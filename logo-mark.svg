@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <defs>
+    <linearGradient id="gA" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#b49fff"/>
+      <stop offset="55%"  stop-color="#7c5cfc"/>
+      <stop offset="100%" stop-color="#4fa3ff"/>
+    </linearGradient>
+    <linearGradient id="gB" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#7c5cfc" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#4fa3ff" stop-opacity="0.06"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="1.4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background tile -->
+  <rect width="48" height="48" rx="11" fill="#0c0c22"/>
+  <rect width="48" height="48" rx="11" fill="url(#gB)"/>
+  <!-- Top edge highlight -->
+  <rect x="1" y="1" width="46" height="1.5" rx="0.75" fill="url(#gA)" opacity="0.3"/>
+
+  <!-- F letterform — precision geometry -->
+  <!-- Vertical stem -->
+  <rect x="13"   y="11"   width="5.5"  height="26"  rx="1.2" fill="url(#gA)"/>
+  <!-- Top horizontal bar -->
+  <rect x="13"   y="11"   width="22"   height="5.5"  rx="1.2" fill="url(#gA)"/>
+  <!-- Mid horizontal bar (shorter) -->
+  <rect x="13"   y="21.5" width="16"   height="5"    rx="1.2" fill="url(#gA)"/>
+
+  <!-- Accent node dots — circuit motif -->
+  <!-- Top-right corner of top bar -->
+  <circle cx="35"    cy="13.75" r="2.8" fill="#4fa3ff" filter="url(#glow)" opacity="0.95"/>
+  <!-- End of mid bar -->
+  <circle cx="29"    cy="24"    r="2.2" fill="#b49fff" opacity="0.85"/>
+  <!-- Bottom of stem -->
+  <circle cx="15.75" cy="37"    r="1.8" fill="#7c5cfc" opacity="0.7"/>
+
+  <!-- Circuit trace — decorative tech detail -->
+  <polyline points="29,26.2 29,34 36,34"
+    stroke="#4fa3ff" stroke-width="1" opacity="0.3"
+    stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="36" cy="34" r="1.5" fill="#4fa3ff" opacity="0.35"/>
+</svg>

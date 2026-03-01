@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 48" fill="none">
+  <defs>
+    <linearGradient id="gM" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#b49fff"/>
+      <stop offset="55%"  stop-color="#7c5cfc"/>
+      <stop offset="100%" stop-color="#4fa3ff"/>
+    </linearGradient>
+    <linearGradient id="gT" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#c8b8ff"/>
+      <stop offset="60%"  stop-color="#a48bff"/>
+      <stop offset="100%" stop-color="#6ec0ff"/>
+    </linearGradient>
+    <filter id="glM" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="1.2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Mark icon -->
+  <rect x="0"   y="4"  width="40" height="40" rx="9.5" fill="#0c0c22"/>
+  <rect x="0"   y="4"  width="40" height="40" rx="9.5" fill="url(#gM)" opacity="0.07"/>
+  <rect x="0.8" y="4.8" width="38.4" height="1.2" rx="0.6" fill="url(#gM)" opacity="0.28"/>
+  <!-- F stem -->
+  <rect x="9.5"  y="12"    width="4.8"  height="22"   rx="1"   fill="url(#gM)"/>
+  <!-- F top bar -->
+  <rect x="9.5"  y="12"    width="19"   height="4.8"  rx="1"   fill="url(#gM)"/>
+  <!-- F mid bar -->
+  <rect x="9.5"  y="21.5"  width="13.5" height="4.2"  rx="1"   fill="url(#gM)"/>
+  <!-- Nodes -->
+  <circle cx="28.5" cy="14.4" r="2.4" fill="#4fa3ff" filter="url(#glM)" opacity="0.9"/>
+  <circle cx="23"   cy="23.6" r="1.9" fill="#b49fff" opacity="0.8"/>
+  <circle cx="11.9" cy="34"   r="1.5" fill="#7c5cfc" opacity="0.65"/>
+  <!-- Circuit trace -->
+  <polyline points="23,25.5 23,31 30,31"
+    stroke="#4fa3ff" stroke-width="0.9" opacity="0.25"
+    stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="30" cy="31" r="1.2" fill="#4fa3ff" opacity="0.3"/>
+
+  <!-- Vertical divider -->
+  <line x1="50" y1="9" x2="50" y2="39" stroke="#7c5cfc" stroke-width="0.8" opacity="0.2"/>
+
+  <!-- FRAZIYM wordmark -->
+  <text x="60" y="23"
+    font-family="'JetBrains Mono','Courier New',monospace"
+    font-size="14.5" font-weight="700" letter-spacing="0.14em"
+    fill="url(#gT)">FRAZIYM</text>
+
+  <!-- TECH &amp; AI sublabel -->
+  <text x="61" y="36.5"
+    font-family="'JetBrains Mono','Courier New',monospace"
+    font-size="8" font-weight="500" letter-spacing="0.24em"
+    fill="#4a4a72">TECH &amp; AI</text>
+
+  <!-- Hairline separator under wordmark -->
+  <line x1="60" y1="26" x2="255" y2="26" stroke="url(#gT)" stroke-width="0.4" opacity="0.1"/>
+</svg>

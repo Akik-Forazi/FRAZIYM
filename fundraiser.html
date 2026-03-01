@@ -1,0 +1,968 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Support ZARX — Community Fundraiser · FRAZIYM TECH & AI</title>
+  <meta name="description" content="Help Akik Faraji build ZARX: 50× cheaper AI from Bangladesh. Community fundraiser to secure GPU hardware and accelerate ZARX model training." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Fundraiser-specific styles ─────────────────────── */
+
+    /* Progress bar */
+    .fund-progress-wrap {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: clamp(24px,3vw,36px);
+    }
+    .fund-bar-outer {
+      width: 100%; height: 12px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 999px; overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .fund-bar-inner {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-light));
+      border-radius: 999px;
+      transition: width 1.8s cubic-bezier(0.4,0,0.2,1);
+      width: 0%;
+      position: relative;
+    }
+    .fund-bar-inner::after {
+      content:'';
+      position: absolute; right: 0; top: -4px; bottom: -4px; width: 2px;
+      background: white; border-radius: 2px;
+      box-shadow: 0 0 8px rgba(255,255,255,0.6);
+      opacity: 0.8;
+    }
+    .fund-stats {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 16px;
+      text-align: center;
+    }
+    .fund-stat-val {
+      font-family: var(--mono); font-size: clamp(1.4rem,2.5vw,2.2rem);
+      font-weight: 700; color: var(--accent); display: block; line-height: 1;
+      margin-bottom: 4px;
+    }
+    .fund-stat-label {
+      font-size: 0.78rem; color: var(--fg-dim);
+      font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .fund-percent {
+      font-family: var(--mono); font-size: 0.8rem; color: var(--fg-dim);
+      margin-bottom: 8px;
+    }
+
+    /* Tier cards */
+    .tier-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+      gap: 20px;
+    }
+    .tier-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px;
+      position: relative;
+      transition: border-color var(--transition), transform var(--transition);
+      cursor: pointer;
+    }
+    .tier-card:hover { border-color: var(--line-2); transform: translateY(-4px); }
+    .tier-card.tier-popular {
+      border-color: rgba(77,240,200,0.35);
+      background: rgba(77,240,200,0.02);
+    }
+    .tier-card.tier-angel {
+      border-color: rgba(107,123,255,0.35);
+      background: rgba(107,123,255,0.02);
+    }
+    .tier-label {
+      font-family: var(--mono); font-size: 0.67rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px; display: block;
+    }
+    .tier-card.tier-angel .tier-label { color: var(--accent-2); }
+    .tier-price {
+      font-family: var(--mono); font-size: 2.4rem; font-weight: 700;
+      color: var(--fg); line-height: 1; margin-bottom: 4px;
+    }
+    .tier-name {
+      font-size: 1rem; font-weight: 600; margin-bottom: 18px; color: var(--fg-muted);
+    }
+    .tier-perks {
+      list-style: none; padding: 0; margin: 0 0 22px; display: grid; gap: 8px;
+    }
+    .tier-perks li {
+      font-size: 0.85rem; color: var(--fg-muted);
+      display: flex; gap: 8px; align-items: flex-start;
+    }
+    .tier-perks li::before { content:'✓'; color: var(--accent); font-weight:700; flex-shrink:0; }
+    .tier-card.tier-angel .tier-perks li::before { color: var(--accent-2); }
+
+    /* Budget breakdown */
+    .budget-row {
+      display: flex; align-items: center; gap: 16px; padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .budget-row:last-child { border-bottom: none; }
+    .budget-bar-track {
+      flex: 1; height: 4px; background: rgba(255,255,255,0.06);
+      border-radius: 999px; overflow: hidden; min-width: 80px;
+    }
+    .budget-bar-fill {
+      height: 100%; border-radius: 999px; background: var(--accent);
+    }
+    .budget-label { font-size: 0.88rem; color: var(--fg); min-width: 180px; }
+    .budget-amount { font-family: var(--mono); font-size: 0.88rem; color: var(--accent); min-width: 60px; text-align: right; }
+
+    /* Payment modal */
+    .pay-modal-overlay {
+      position: fixed; inset:0; z-index: 200;
+      background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px; opacity:0; pointer-events:none;
+      transition: opacity 0.25s;
+    }
+    .pay-modal-overlay.open { opacity:1; pointer-events:all; }
+    .pay-modal {
+      background: var(--bg-2); border: 1px solid var(--line-2);
+      border-radius: var(--radius-lg); padding: clamp(24px,4vw,40px);
+      max-width: 580px; width:100%; max-height: 90vh; overflow-y: auto;
+      transform: translateY(16px); transition: transform 0.25s;
+      position: relative;
+    }
+    .pay-modal-overlay.open .pay-modal { transform: translateY(0); }
+    .pay-modal-close {
+      position: absolute; top: 16px; right: 16px;
+      background: rgba(255,255,255,0.07); border: 1px solid var(--line);
+      color: var(--fg-muted); width: 32px; height: 32px; border-radius: 50%;
+      font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background var(--transition), color var(--transition);
+    }
+    .pay-modal-close:hover { background: rgba(255,255,255,0.12); color: var(--fg); }
+    .pay-amount-display {
+      text-align: center; padding: 16px 0 24px;
+      font-family: var(--mono); font-size: 2.8rem; font-weight: 700; color: var(--accent);
+    }
+    .pay-amount-display small {
+      display: block; font-size: 1rem; color: var(--fg-muted); margin-top: 4px;
+    }
+    .pay-section-title {
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--fg-dim); margin: 20px 0 10px;
+    }
+    .pay-method-btn {
+      width: 100%; display: flex; align-items: center; gap: 12px;
+      padding: 14px 16px; margin-bottom: 8px; border-radius: var(--radius-sm);
+      border: 1px solid var(--line); background: var(--card); cursor: pointer;
+      font-size: 0.9rem; font-weight: 600; color: var(--fg);
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .pay-method-btn:hover { border-color: var(--line-2); background: var(--card-2); }
+    .pay-method-btn .method-icon {
+      width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 1rem;
+    }
+    .pay-instruction {
+      background: rgba(77,240,200,0.04); border: 1px solid rgba(77,240,200,0.15);
+      border-radius: var(--radius-sm); padding: 16px; margin-top: 16px;
+      font-size: 0.85rem; color: var(--fg-muted); line-height: 1.7;
+      display: none;
+    }
+    .pay-instruction.visible { display: block; }
+    .pay-instruction code {
+      font-family: var(--mono); background: rgba(255,255,255,0.06);
+      padding: 2px 8px; border-radius: 4px; color: var(--accent);
+      font-size: 0.88em; cursor: pointer; user-select: all;
+    }
+    .pay-instruction code:hover { background: rgba(77,240,200,0.1); }
+    .copy-hint { font-size: 0.75rem; color: var(--fg-dim); margin-top: 4px; }
+
+    /* Donor form */
+    .donor-form-section { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--line); }
+    .donor-form-section h4 { font-size: 0.9rem; margin-bottom: 4px; }
+    .donor-form-section p { font-size: 0.82rem; color: var(--fg-dim); margin: 0 0 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    /* Custom amount input */
+    .custom-amt-wrap {
+      display: flex; gap: 10px; align-items: center; margin-top: 24px;
+      background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-sm);
+      padding: 10px 16px;
+    }
+    .custom-amt-wrap span { font-family: var(--mono); color: var(--accent); font-size: 1.1rem; }
+    .custom-amt-wrap input {
+      flex:1; background: transparent; border: none; font-size: 1rem;
+      color: var(--fg); padding: 4px 0;
+    }
+    .custom-amt-wrap input:focus { outline: none; }
+
+    /* Story quote */
+    .story-quote {
+      border-left: 3px solid var(--accent); padding: 16px 20px;
+      background: rgba(77,240,200,0.03); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 20px 0;
+    }
+    .story-quote p { font-size: 1rem; color: var(--fg-muted); margin: 0; line-height: 1.75; font-style: italic; }
+
+    /* FAQ accordion */
+    .faq-item {
+      border-bottom: 1px solid var(--line); padding: 18px 0;
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q {
+      font-size: 0.95rem; font-weight: 600; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      color: var(--fg); gap: 16px;
+    }
+    .faq-q .faq-icon {
+      color: var(--accent); font-family: var(--mono); flex-shrink: 0;
+      transition: transform var(--transition);
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a {
+      font-size: 0.88rem; color: var(--fg-muted); margin-top: 12px;
+      line-height: 1.75; max-height: 0; overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .faq-item.open .faq-a { max-height: 300px; }
+
+    /* Toast notification */
+    .toast {
+      position: fixed; bottom: 24px; right: 24px; z-index: 300;
+      background: var(--bg-3); border: 1px solid var(--line-2);
+      border-radius: var(--radius-sm); padding: 14px 18px;
+      font-size: 0.88rem; color: var(--fg); max-width: 320px;
+      transform: translateY(80px); opacity:0;
+      transition: transform 0.3s, opacity 0.3s;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast.toast-ok .toast-icon { color: #28c840; }
+    .toast.toast-err .toast-icon { color: var(--accent-3); }
+
+    /* Backer list placeholder */
+    .backer-row {
+      display: flex; align-items: center; gap: 12px; padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .backer-row:last-child { border-bottom: none; }
+    .backer-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: conic-gradient(from 200deg, var(--accent), var(--accent-2));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-size: 0.75rem; font-weight: 700; color: #030508; flex-shrink: 0;
+    }
+    .backer-name { font-size: 0.88rem; font-weight: 500; }
+    .backer-tier { font-size: 0.76rem; color: var(--fg-dim); font-family: var(--mono); }
+    .backer-amount { margin-left: auto; font-family: var(--mono); font-size: 0.85rem; color: var(--accent); }
+
+    @media (max-width: 640px) {
+      .fund-stats { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+      .budget-label { min-width: unset; font-size: 0.82rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-canvas"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-beam"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container nav">
+      <a class="logo" href="index.html"><span class="logo-icon"></span>FRAZIYM TECH &amp; AI</a>
+      <button class="mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path stroke="currentColor" stroke-width="1.5" d="M2 4h12M2 8h12M2 12h12"/></svg>Menu
+      </button>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="product.html">Product</a>
+        <div class="dropdown">
+          <a href="projects.html" aria-haspopup="true">Projects ▾</a>
+          <div class="dropdown-menu">
+            <a href="zarx.html"><span class="dot dot-amber"></span>ZARX Framework</a>
+            <a href="projects.html#axonix"><span class="dot"></span>AXONIX-ZERO</a>
+            <a href="projects.html#models"><span class="dot"></span>Models</a>
+            <a href="projects.html#agentic"><span class="dot"></span>Agentic Services</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <a href="team.html" aria-haspopup="true">Team ▾</a>
+          <div class="dropdown-menu">
+            <a href="founder.html"><span class="dot"></span>Akik Faraji — Founder &amp; CTO</a>
+            <a href="sakibul.html"><span class="dot"></span>Sakibul Hassan — CEO</a>
+            <a href="yasir.html"><span class="dot"></span>Yasir Arafat — CCO</a>
+            <a href="team.html"><span class="dot"></span>Full Team</a>
+            <a href="team.html#join"><span class="dot"></span>Join FRAZIYM</a>
+          </div>
+        </div>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="stage.html">Stage</a>
+        <a href="contact.html">Contact</a>
+        <a class="nav-cta active" href="fundraiser.html">Support ZARX</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="section" style="padding-top: clamp(110px,14vw,160px); padding-bottom: 0;">
+      <div class="container">
+        <div style="max-width: 780px;">
+          <div class="reveal">
+            <div class="badge badge-warn badge-dot" style="margin-bottom: 24px;">Community Fundraiser · GPU Needed · Bangladesh</div>
+          </div>
+          <h1 data-type-header class="reveal reveal-delay-1" style="margin-bottom: 20px; letter-spacing: -0.03em;">
+            Help build <span class="display">50× cheaper AI</span><br>from Bangladesh.
+          </h1>
+          <p class="reveal reveal-delay-2" style="font-size: clamp(1rem,1.4vw,1.15rem); color: var(--fg-muted); max-width: 600px; margin: 0 0 36px; line-height: 1.75;">
+            I'm Akik — 19 years old, founder of FRAZIYM TECH &amp; AI. I chose ZARX over my exams. The architecture works. The math checks out. Now I need GPU hardware to prove it at scale.
+          </p>
+          <div class="btn-row reveal reveal-delay-3">
+            <a class="btn btn-primary" href="#donate">Support this project</a>
+            <a class="btn btn-ghost" href="#story">Read the story</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress card -->
+      <div class="container" style="margin-top: 64px; max-width: 720px;">
+        <div class="fund-progress-wrap reveal reveal-delay-2">
+          <div class="fund-percent" id="fundPercent">0% funded</div>
+          <div class="fund-bar-outer">
+            <div class="fund-bar-inner" id="fundBar"></div>
+          </div>
+          <div class="fund-stats">
+            <div>
+              <span class="fund-stat-val" id="fundRaised">$0</span>
+              <span class="fund-stat-label">Raised</span>
+            </div>
+            <div>
+              <span class="fund-stat-val">$8,000</span>
+              <span class="fund-stat-label">Goal</span>
+            </div>
+            <div>
+              <span class="fund-stat-val" id="fundBackers">0</span>
+              <span class="fund-stat-label">Backers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT IS ZARX -->
+    <section class="section" id="story">
+      <div class="container">
+        <div class="section-label reveal">About ZARX</div>
+        <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom: 40px;">What makes this different</h2>
+        <div class="grid-3">
+          <div class="card-feature reveal">
+            <div class="icon">⚡</div>
+            <h3>Sparse Activation</h3>
+            <p>90% fewer parameters active per token. Dense models fire everything for every token — ZARX uses targeted, adaptive routing that produces the same output at a fraction of the cost.</p>
+          </div>
+          <div class="card-feature reveal reveal-delay-1">
+            <div class="icon">💡</div>
+            <h3>HASS Architecture</h3>
+            <p>Hierarchical Adaptive Sparse Stacks with Mixture-of-Experts routing. Latent Chain-of-Thought reasoning built-in. 5× RAM reduction, 20× CPU speedup on matched benchmarks.</p>
+          </div>
+          <div class="card-feature reveal reveal-delay-2">
+            <div class="icon">🌍</div>
+            <h3>Accessible AI</h3>
+            <p>ChatGPT costs $20/month — that's luxury pricing for 500M+ people worldwide. If ZARX scales as the math suggests: $2/month with 70% margins. Better economics means accessible to everyone.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE STORY -->
+    <section class="section-sm" style="padding-top: 0;">
+      <div class="container">
+        <div class="card reveal" style="border-color: rgba(255,209,102,0.15);">
+          <div class="grid-2" style="gap: 48px; align-items: start;">
+            <div>
+              <div class="section-label" data-type-header style="margin-bottom: 20px;">The Founder's Reality</div>
+              <p style="color: var(--fg-muted); font-size: 1rem; line-height: 1.8; margin-bottom: 16px;">
+                I failed my HSC (high school) exams in 2025 because I spent those 8 months building ZARX instead of studying. My family wants me to retake them. The education system here doesn't understand why someone would choose architecture over credentials.
+              </p>
+              <div class="story-quote">
+                <p>The prototypes work. The math checks out. Small models from 1M–10M parameters show the sparse activation architecture delivers real compute savings. The routing works. The MoE structure works. I've written 50,000+ lines of code.</p>
+              </div>
+              <p style="color: var(--fg-muted); font-size: 1rem; line-height: 1.8; margin-bottom: 0;">
+                I'm training on a laptop CPU. The full 277M parameter model would take <strong style="color: var(--fg);">months</strong> on this hardware. GPUs would cut that to days. This is the only thing standing between the prototype and proof-of-scale.
+              </p>
+            </div>
+            <div>
+              <div class="grid-2" style="gap: 14px;">
+                <div class="stat reveal">
+                  <span class="stat-num" style="font-size: clamp(1.6rem,2.5vw,2.4rem);">277M</span>
+                  <span class="stat-label">Parameters</span>
+                </div>
+                <div class="stat reveal reveal-delay-1">
+                  <span class="stat-num" style="font-size: clamp(1.6rem,2.5vw,2.4rem);">90%</span>
+                  <span class="stat-label">Sparse activation</span>
+                </div>
+                <div class="stat reveal reveal-delay-2">
+                  <span class="stat-num" style="font-size: clamp(1.6rem,2.5vw,2.4rem);">50×</span>
+                  <span class="stat-label">Cost reduction</span>
+                </div>
+                <div class="stat reveal reveal-delay-3">
+                  <span class="stat-num" style="font-size: clamp(1.6rem,2.5vw,2.4rem);">8mo</span>
+                  <span class="stat-label">Building time</span>
+                </div>
+              </div>
+              <div style="margin-top: 20px; padding: 16px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-sm);">
+                <div class="section-label" style="margin-bottom: 12px;">Current constraints</div>
+                <div style="display: grid; gap: 8px;">
+                  <div style="display: flex; gap: 10px; align-items: center; font-size: 0.85rem;">
+                    <span style="color: var(--accent-3);">●</span>
+                    <span style="color: var(--fg-muted);">Training on laptop CPU — months per run</span>
+                  </div>
+                  <div style="display: flex; gap: 10px; align-items: center; font-size: 0.85rem;">
+                    <span style="color: var(--accent-3);">●</span>
+                    <span style="color: var(--fg-muted);">No formal compute budget</span>
+                  </div>
+                  <div style="display: flex; gap: 10px; align-items: center; font-size: 0.85rem;">
+                    <span style="color: var(--accent-4);">◉</span>
+                    <span style="color: var(--fg-muted);">Architecture validated at small scale</span>
+                  </div>
+                  <div style="display: flex; gap: 10px; align-items: center; font-size: 0.85rem;">
+                    <span style="color: var(--accent);">✓</span>
+                    <span style="color: var(--fg-muted);">50,000+ lines of framework code written</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUDGET BREAKDOWN -->
+    <section class="section-sm">
+      <div class="container">
+        <div class="section-label reveal">Budget Breakdown</div>
+        <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom: 8px;">Where every dollar goes</h2>
+        <p class="reveal reveal-delay-2" style="color: var(--fg-muted); font-size: 0.95rem; margin: 0 0 32px;">No living expenses. I live with my parents. 100% of funding goes toward hardware and infrastructure.</p>
+        <div class="card reveal" style="padding: clamp(20px,3vw,32px);">
+          <div class="budget-row">
+            <span class="budget-label">2× RTX 3090 GPUs <span style="font-size:0.78rem; color: var(--fg-dim);">(20× faster training)</span></span>
+            <div class="budget-bar-track"><div class="budget-bar-fill" style="width: 43.75%;"></div></div>
+            <span class="budget-amount">$3,500</span>
+          </div>
+          <div class="budget-row">
+            <span class="budget-label">PC Build <span style="font-size:0.78rem; color: var(--fg-dim);">(power the GPUs)</span></span>
+            <div class="budget-bar-track"><div class="budget-bar-fill" style="width: 18.75%; background: var(--accent-2);"></div></div>
+            <span class="budget-amount" style="color: var(--accent-2);">$1,500</span>
+          </div>
+          <div class="budget-row">
+            <span class="budget-label">Cloud Compute <span style="font-size:0.78rem; color: var(--fg-dim);">(training credits + API)</span></span>
+            <div class="budget-bar-track"><div class="budget-bar-fill" style="width: 18.75%; background: var(--accent-2);"></div></div>
+            <span class="budget-amount" style="color: var(--accent-2);">$1,500</span>
+          </div>
+          <div class="budget-row">
+            <span class="budget-label">Raspberry Pi Cluster <span style="font-size:0.78rem; color: var(--fg-dim);">(community mini-server)</span></span>
+            <div class="budget-bar-track"><div class="budget-bar-fill" style="width: 12.5%; background: var(--accent-4);"></div></div>
+            <span class="budget-amount" style="color: var(--accent-4);">$1,000</span>
+          </div>
+          <div class="budget-row">
+            <span class="budget-label">Legal &amp; Infrastructure <span style="font-size:0.78rem; color: var(--fg-dim);">(company, domains, tools)</span></span>
+            <div class="budget-bar-track"><div class="budget-bar-fill" style="width: 6.25%; background: var(--fg-dim);"></div></div>
+            <span class="budget-amount" style="color: var(--fg-dim);">$500</span>
+          </div>
+          <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 0.88rem; color: var(--fg-dim);">Total Goal</span>
+            <span style="font-family: var(--mono); font-size: 1.2rem; font-weight: 700; color: var(--accent);">$8,000</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUPPORT TIERS -->
+    <section class="section" id="donate">
+      <div class="container">
+        <div class="section-label reveal">Support Tiers</div>
+        <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom: 12px;">Pick your level of support</h2>
+        <p class="reveal reveal-delay-2" style="color: var(--fg-muted); font-size: 0.95rem; margin: 0 0 40px;">This isn't charity. This is getting in early on an underdog story. If this works, you were here first.</p>
+
+        <div class="tier-grid">
+          <!-- Believer -->
+          <div class="tier-card reveal" onclick="openPaymentModal(25)">
+            <span class="tier-label">Believer</span>
+            <div class="tier-price">$25</div>
+            <div class="tier-name">Coffee Money</div>
+            <ul class="tier-perks">
+              <li>Monthly progress updates</li>
+              <li>Name in supporters list</li>
+              <li>Behind-the-scenes dev logs</li>
+            </ul>
+            <button class="btn btn-ghost btn-sm" style="width:100%; border-radius: var(--radius-sm);">Select →</button>
+          </div>
+
+          <!-- Early Access (Popular) -->
+          <div class="tier-card tier-popular reveal reveal-delay-1" onclick="openPaymentModal(100)">
+            <span class="tier-label">★ Most Popular</span>
+            <div class="tier-price" style="color: var(--accent);">$100</div>
+            <div class="tier-name">Early Access</div>
+            <ul class="tier-perks">
+              <li>Everything in Believer</li>
+              <li>Early demo access when ready</li>
+              <li>Private Discord channel</li>
+              <li>Monthly live Q&amp;A sessions</li>
+            </ul>
+            <button class="btn btn-primary btn-sm" style="width:100%; border-radius: var(--radius-sm);">Select →</button>
+          </div>
+
+          <!-- Founding -->
+          <div class="tier-card reveal reveal-delay-2" onclick="openPaymentModal(500)">
+            <span class="tier-label">Founding</span>
+            <div class="tier-price">$500</div>
+            <div class="tier-name">Founding Supporter</div>
+            <ul class="tier-perks">
+              <li>Everything in Early Access</li>
+              <li>"Founding Supporter" badge</li>
+              <li>Sponsor a Pi cluster node</li>
+              <li>30-minute video call with Akik</li>
+              <li>Remote inference test access</li>
+            </ul>
+            <button class="btn btn-ghost btn-sm" style="width:100%; border-radius: var(--radius-sm);">Select →</button>
+          </div>
+
+          <!-- Angel -->
+          <div class="tier-card tier-angel reveal reveal-delay-3" onclick="openPaymentModal(2000)">
+            <span class="tier-label" style="color: var(--accent-2);">Angel Backer</span>
+            <div class="tier-price" style="color: var(--accent-2);">$2,000</div>
+            <div class="tier-name">You're making this happen</div>
+            <ul class="tier-perks" style="--check-color: var(--accent-2);">
+              <li>Everything in Founding</li>
+              <li>Permanent recognition on website</li>
+              <li>Quarterly strategy calls</li>
+              <li>Early access to all future releases</li>
+              <li>Custom acknowledgment in model docs</li>
+            </ul>
+            <button class="btn btn-ghost btn-sm" style="width:100%; border-radius: var(--radius-sm); border-color: rgba(107,123,255,0.4); color: var(--accent-2);">Select →</button>
+          </div>
+        </div>
+
+        <!-- Custom amount -->
+        <div class="custom-amt-wrap reveal" style="max-width: 480px; margin-top: 24px;">
+          <span>$</span>
+          <input type="number" id="customAmt" placeholder="Custom amount (min $5)" min="5" step="1" />
+          <button class="btn btn-ghost btn-sm" onclick="selectCustomAmount()">Donate →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- DELIVERABLES -->
+    <section class="section-sm" style="padding-top: 0;">
+      <div class="container">
+        <div class="section-label reveal">What You'll Get</div>
+        <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom: 32px;">Full transparency, always</h2>
+        <div class="grid-4">
+          <div class="card-feature reveal">
+            <div class="icon">📦</div>
+            <h3>Hardware Unboxing</h3>
+            <p>Photos and videos of every component purchased. You'll see where every dollar went.</p>
+          </div>
+          <div class="card-feature reveal reveal-delay-1">
+            <div class="icon">📊</div>
+            <h3>Monthly Updates</h3>
+            <p>Training progress, benchmark results, architecture improvements. No spin — just real numbers.</p>
+          </div>
+          <div class="card-feature reveal reveal-delay-2">
+            <div class="icon">🖥</div>
+            <h3>Cluster Access</h3>
+            <p>Raspberry Pi community cluster. Backers get remote access to test inference on real hardware.</p>
+          </div>
+          <div class="card-feature reveal reveal-delay-3">
+            <div class="icon">💬</div>
+            <h3>Direct Line</h3>
+            <p>Private Discord for supporters. Ask anything, suggest features, watch development in real time.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BACKERS WALL (Placeholder) -->
+    <section class="section-sm" id="backers">
+      <div class="container" style="max-width: 640px;">
+        <div class="section-label reveal">Community</div>
+        <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom: 24px;">Early backers</h2>
+        <div class="card reveal">
+          <div class="backer-row">
+            <div class="backer-avatar">?</div>
+            <div>
+              <div class="backer-name">Be the first</div>
+              <div class="backer-tier">Your name will appear here</div>
+            </div>
+            <div class="backer-amount">—</div>
+          </div>
+          <div style="padding: 20px 0 8px; text-align: center; color: var(--fg-dim); font-size: 0.85rem;">
+            Backer wall updates within 24–48 hours of verified payment.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section-sm" style="padding-top: 0;">
+      <div class="container" style="max-width: 720px;">
+        <div class="section-label reveal">Questions</div>
+        <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom: 32px;">Honest answers</h2>
+        <div class="card reveal">
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Is this an equity investment? <span class="faq-icon">+</span></div>
+            <div class="faq-a">No. This is community support, not equity. You're helping secure hardware to prove this works at scale. If it succeeds, you were here first and get all the stated perks. No equity changes hands.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">What if it doesn't work? <span class="faq-icon">+</span></div>
+            <div class="faq-a">Then I failed, but at least we tried. You'll still receive all progress updates, access to the open-source code, and full documentation of what went wrong. Science is about testing hypotheses honestly.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">How do I know you're legitimate? <span class="faq-icon">+</span></div>
+            <div class="faq-a">Don't blindly trust anyone — including me. That's why I'll share progress updates, code commits, benchmark results, and photos of everything purchased. If anything looks off, it'll be obvious fast. The entire FRAZIYM site and AXONIX-ZERO documentation is public.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Can I get a refund? <span class="faq-icon">+</span></div>
+            <div class="faq-a">No refunds once hardware is purchased. This is community funding, not a product pre-order. Only contribute what you're comfortable with as a non-recoverable investment. Hardware purchases will be documented immediately.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">What about your exams? <span class="faq-icon">+</span></div>
+            <div class="faq-a">I'll deal with that later. Right now I'm all-in on this. If it works, the choice will have been obvious. If it fails, I retake them. Simple.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">When will ZARX be ready? <span class="faq-icon">+</span></div>
+            <div class="faq-a">With GPUs: 2–4 months for full training and validation at scale. Without GPUs: the timeline stretches to potentially a year or more on CPU. The architecture is ready — hardware is the bottleneck.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="section-sm">
+      <div class="container">
+        <div class="card reveal" style="text-align: center; padding: clamp(36px,5vw,64px); border-color: rgba(77,240,200,0.15);">
+          <div class="badge badge-accent badge-dot" style="margin: 0 auto 20px;">This is happening either way</div>
+          <h2 data-type-header style="margin-bottom: 16px;">It'll just happen faster with your help.</h2>
+          <p style="color: var(--fg-muted); max-width: 480px; margin: 0 auto 28px; font-size: 1rem; line-height: 1.75;">
+            Every dollar shortens the hardware gap. Every backer makes this more real. You can also explore AXONIX-ZERO — the working product already built on this foundation.
+          </p>
+          <div class="btn-row" style="justify-content: center;">
+            <a class="btn btn-primary" href="#donate">Support the project</a>
+            <a class="btn btn-ghost" href="product.html">Explore AXONIX-ZERO</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo" style="margin-bottom: 12px;"><span class="logo-icon"></span>FRAZIYM TECH &amp; AI</div>
+          <p>Building local-first agentic AI systems and ZARX — 50× more efficient sparse AI. Founded by Akik Faraji, Sakibul Hassan, and Yasir Arafat.</p>
+          <div class="footer-status"><span class="status-dot"></span>Fundraiser active</div>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="product.html">AXONIX-ZERO</a>
+          <a href="zarx.html">ZARX Framework</a>
+          <a href="product.html#backends">Backends</a>
+          <a href="product.html#tools">Tools</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="about.html">About</a>
+          <a href="founder.html">Akik — Founder &amp; CTO</a>
+          <a href="sakibul.html">Sakibul — CEO</a>
+          <a href="yasir.html">Yasir — CCO</a>
+          <a href="team.html">Team</a>
+          <a href="stage.html">Stage</a>
+          <a href="projects.html">Projects</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="#donate" style="color:var(--accent-4);">⭐ Support ZARX</a>
+          <a href="contact.html#demo">Request demo</a>
+          <a href="mailto:akikfaraji@gmail.com">akikfaraji@gmail.com</a>
+          <a href="https://github.com/Akik-Forazi" target="_blank" rel="noopener">GitHub</a>
+          <a href="team.html#join">Join the team</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 FRAZIYM TECH &amp; AI · All rights reserved · Akik Faraji · Dhaka, Bangladesh</span>
+        <span class="mono" style="font-size:0.74rem;">v3.0.0-beta · ZARX v0.2.4 · fundraiser active</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- PAYMENT MODAL -->
+  <div class="pay-modal-overlay" id="payModalOverlay" onclick="closePayModalOnOverlay(event)">
+    <div class="pay-modal" id="payModal">
+      <button class="pay-modal-close" onclick="closePaymentModal()">×</button>
+      <div id="payModalContent"><!-- filled by JS --></div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <span class="toast-icon" id="toastIcon">✓</span>
+    <span id="toastMsg"></span>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+  /* ── Fundraiser JS ─────────────────────────────────────── */
+  (function() {
+    // ── Live funding data — update these manually ──────────
+    const FUND = { raised: 0, goal: 8000, backers: 0 };
+    const BDT_RATE = 120; // $1 ≈ ৳120
+
+    // ── Payment numbers — FILL THESE IN ───────────────────
+    const PAYMENTS = {
+      bkash:   '01340172132',   // Replaced with bKash number
+      nagad:   '01340172132',   // Replaced with Nagad number
+      rocket:  '017857310890',   // Replaced with Rocket number
+      btc:     '1Naqfw1gLbCwazC2DcvuGk8kECSQGy8y6b',
+      usdt:    'TG3eJ8EcUQuUekfHpy4ZKMXrqVyadPvQd8',
+      eth:     '0x940a1b9a2b7434d30bc26699542d12d7b3ad7626',
+    };
+
+    // ── Render progress ────────────────────────────────────
+    function renderProgress() {
+      const pct = Math.min((FUND.raised / FUND.goal) * 100, 100);
+      const bar = document.getElementById('fundBar');
+      const pctEl = document.getElementById('fundPercent');
+      if (bar) setTimeout(() => { bar.style.width = pct + '%'; }, 400);
+      if (pctEl) pctEl.textContent = pct.toFixed(1) + '% funded';
+      animNum('fundRaised', FUND.raised, '$');
+      animNum('fundBackers', FUND.backers);
+    }
+
+    function animNum(id, target, prefix='') {
+      const el = document.getElementById(id);
+      if (!el || target === 0) { if (el) el.textContent = prefix + '0'; return; }
+      let start = null;
+      const duration = 1600;
+      const step = (ts) => {
+        if (!start) start = ts;
+        const p = Math.min((ts - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - p, 3);
+        el.textContent = prefix + Math.floor(ease * target).toLocaleString();
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+
+    const io = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) { renderProgress(); io.disconnect(); }
+    }, { threshold: 0.3 });
+    const bar = document.getElementById('fundBar');
+    if (bar) io.observe(bar);
+
+    // ── Toast ──────────────────────────────────────────────
+    window.showToast = function(msg, type='ok') {
+      const t = document.getElementById('toast');
+      const icon = document.getElementById('toastIcon');
+      const msgEl = document.getElementById('toastMsg');
+      t.className = 'toast toast-' + type;
+      icon.textContent = type === 'ok' ? '✓' : '!';
+      msgEl.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(t._timer);
+      t._timer = setTimeout(() => t.classList.remove('show'), 4000);
+    };
+
+    // ── Copy helper ────────────────────────────────────────
+    window.copyToClipboard = function(text, label) {
+      navigator.clipboard.writeText(text).catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = text; document.body.appendChild(ta);
+        ta.select(); document.execCommand('copy');
+        document.body.removeChild(ta);
+      });
+      showToast('Copied: ' + (label || text), 'ok');
+    };
+
+    // ── FAQ toggle ─────────────────────────────────────────
+    window.toggleFaq = function(el) {
+      const item = el.closest('.faq-item');
+      item.classList.toggle('open');
+    };
+
+    // ── Get tier name ──────────────────────────────────────
+    function tierName(amount) {
+      if (amount >= 2000) return 'Angel Backer';
+      if (amount >= 500)  return 'Founding Supporter';
+      if (amount >= 100)  return 'Early Access';
+      if (amount >= 25)   return 'Believer';
+      return 'Supporter';
+    }
+
+    // ── Custom amount ──────────────────────────────────────
+    window.selectCustomAmount = function() {
+      const v = parseInt(document.getElementById('customAmt').value);
+      if (!v || v < 5) { showToast('Please enter at least $5', 'err'); return; }
+      openPaymentModal(v);
+    };
+
+    // ── Payment modal ──────────────────────────────────────
+    window.openPaymentModal = function(amount) {
+      const bdt = Math.ceil(amount * BDT_RATE);
+      const tier = tierName(amount);
+      document.getElementById('payModalContent').innerHTML = buildModalContent(amount, bdt, tier);
+      document.getElementById('payModalOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closePaymentModal = function() {
+      document.getElementById('payModalOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    };
+
+    window.closePayModalOnOverlay = function(e) {
+      if (e.target === document.getElementById('payModalOverlay')) closePaymentModal();
+    };
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closePaymentModal(); });
+
+    function buildModalContent(amount, bdt, tier) {
+      return `
+        <div class="section-label" style="margin-bottom: 8px;">Supporting · ${tier}</div>
+        <div class="pay-amount-display">$${amount}<small>≈ ৳${bdt.toLocaleString()} BDT</small></div>
+        <p style="font-size:0.85rem; color: var(--fg-dim); margin-bottom: 16px;">
+          Choose a payment method below. After sending, fill in the verification form.
+        </p>
+
+        <div class="pay-section-title">Bangladesh Mobile Banking</div>
+        <button class="pay-method-btn" onclick="showInstructions('bkash', ${amount}, ${bdt})">
+          <div class="method-icon" style="background:#E2136E;">💳</div>
+          <div><strong>bKash</strong><span style="display:block;font-size:0.78rem;color:var(--fg-dim);font-weight:400;">Send to: ${PAYMENTS.bkash}</span></div>
+        </button>
+        <button class="pay-method-btn" onclick="showInstructions('nagad', ${amount}, ${bdt})">
+          <div class="method-icon" style="background:#F16022;">💳</div>
+          <div><strong>Nagad</strong><span style="display:block;font-size:0.78rem;color:var(--fg-dim);font-weight:400;">Send to: ${PAYMENTS.nagad}</span></div>
+        </button>
+        <button class="pay-method-btn" onclick="showInstructions('rocket', ${amount}, ${bdt})">
+          <div class="method-icon" style="background:#8B3A8B;">💳</div>
+          <div><strong>Rocket (Dutch-Bangla)</strong><span style="display:block;font-size:0.78rem;color:var(--fg-dim);font-weight:400;">Send to: ${PAYMENTS.rocket}</span></div>
+        </button>
+
+        <div class="pay-section-title" style="margin-top:20px;">Cryptocurrency</div>
+        <button class="pay-method-btn" onclick="showInstructions('crypto', ${amount}, 0)">
+          <div class="method-icon" style="background:#F7931A;">₿</div>
+          <div><strong>Bitcoin / USDT / ETH</strong><span style="display:block;font-size:0.78rem;color:var(--fg-dim);font-weight:400;">BTC · USDT TRC20 · ETH</span></div>
+        </button>
+
+        <div id="payInstruction" class="pay-instruction"></div>
+        <div id="donorFormSection" style="display:none;" class="donor-form-section">
+          <h4>Submit payment verification</h4>
+          <p>Complete your payment first, then fill this form. I'll verify within 24–48 hours.</p>
+          <form id="donorForm" onsubmit="submitDonation(event,${amount},'${tier}')">
+            <div class="form-row">
+              <input type="text" id="dName" placeholder="Your name *" required />
+              <input type="email" id="dEmail" placeholder="Your email *" required />
+            </div>
+            <input type="text" id="dTxn" placeholder="Transaction ID / Hash *" required style="margin-top:12px;" />
+            <button type="submit" id="dSubmit" class="btn btn-primary" style="width:100%; margin-top:14px; border-radius: var(--radius-sm);">
+              Submit for verification →
+            </button>
+          </form>
+        </div>
+      `;
+    }
+
+    window.showInstructions = function(method, amount, bdt) {
+      const el = document.getElementById('payInstruction');
+      const formSection = document.getElementById('donorFormSection');
+      const instructions = {
+        bkash: `
+          <strong style="color: var(--accent);">Pay with bKash</strong><br>
+          Amount: <strong>৳${bdt.toLocaleString()}</strong> (≈ $${amount})<br><br>
+          1. Open bKash → Send Money<br>
+          2. Send to: <code onclick="copyToClipboard('${PAYMENTS.bkash}','bKash number')">${PAYMENTS.bkash}</code>
+          <div class="copy-hint">Click number to copy</div>
+          3. Reference/Note: "ZARX Support"<br>
+          4. Fill the verification form below
+        `,
+        nagad: `
+          <strong style="color: var(--accent);">Pay with Nagad</strong><br>
+          Amount: <strong>৳${bdt.toLocaleString()}</strong> (≈ $${amount})<br><br>
+          1. Open Nagad → Send Money<br>
+          2. Send to: <code onclick="copyToClipboard('${PAYMENTS.nagad}','Nagad number')">${PAYMENTS.nagad}</code>
+          <div class="copy-hint">Click number to copy</div>
+          3. Reference/Note: "ZARX Support"<br>
+          4. Fill the verification form below
+        `,
+        rocket: `
+          <strong style="color: var(--accent);">Pay with Rocket</strong><br>
+          Amount: <strong>৳${bdt.toLocaleString()}</strong> (≈ $${amount})<br><br>
+          1. Dial *322# or use Rocket app → Send Money<br>
+          2. Send to: <code onclick="copyToClipboard('${PAYMENTS.rocket}','Rocket number')">${PAYMENTS.rocket}</code>
+          <div class="copy-hint">Click number to copy</div>
+          3. Reference: "ZARX Support"<br>
+          4. Fill the verification form below
+        `,
+        crypto: `
+          <strong style="color: var(--accent-4);">Pay with Cryptocurrency</strong><br>
+          Send equivalent of <strong>$${amount} USD</strong><br><br>
+          <strong>Bitcoin (BTC):</strong><br>
+          <code onclick="copyToClipboard('${PAYMENTS.btc}','BTC address')" style="display:block;word-break:break-all;margin:4px 0;">${PAYMENTS.btc}</code>
+          <div class="copy-hint">Click to copy · Double-check network before sending</div><br>
+          <strong>USDT (TRC20) — Recommended: low fees</strong><br>
+          <code onclick="copyToClipboard('${PAYMENTS.usdt}','USDT address')" style="display:block;word-break:break-all;margin:4px 0;">${PAYMENTS.usdt}</code>
+          <div class="copy-hint">Click to copy · TRC20 network only</div><br>
+          <strong>Ethereum (ETH):</strong><br>
+          <code onclick="copyToClipboard('${PAYMENTS.eth}','ETH address')" style="display:block;word-break:break-all;margin:4px 0;">${PAYMENTS.eth}</code>
+          <div class="copy-hint">Click to copy · Wrong network = lost funds forever</div>
+          <br>Fill the verification form below with your transaction hash.
+        `,
+      };
+      el.innerHTML = instructions[method] || '';
+      el.classList.add('visible');
+      formSection.style.display = 'block';
+    };
+
+    window.submitDonation = async function(e, amount, tier) {
+      e.preventDefault();
+      const btn = document.getElementById('dSubmit');
+      const name = document.getElementById('dName').value.trim();
+      const email = document.getElementById('dEmail').value.trim();
+      const txn = document.getElementById('dTxn').value.trim();
+      btn.disabled = true; btn.textContent = 'Sending…';
+
+      try {
+        const res = await fetch('/api/donate', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ name, email, amount, tier, transactionId: txn })
+        });
+        if (res.ok) {
+          showToast('Received! Check your email for confirmation.', 'ok');
+          setTimeout(closePaymentModal, 2000);
+        } else {
+          throw new Error('Server error');
+        }
+      } catch {
+        // Fallback: email instead
+        showToast('Server error — please email akikfaraji@gmail.com with your transaction ID.', 'err');
+        btn.disabled = false;
+        btn.textContent = 'Submit for verification →';
+      }
+    };
+  })();
+  </script>
+</body>
+</html>

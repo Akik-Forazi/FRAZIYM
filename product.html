@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Product Platform · FRAZIYM TECH & AI</title>
+  <meta name="description" content="AXONIX-ZERO autonomous agent and ZARX sparse adaptive intelligence framework. Full technical details." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-canvas"></div><div class="bg-grid"></div><div class="bg-beam"></div>
+  <header class="header">
+    <div class="container nav">
+      <a class="logo" href="index.html"><span class="logo-icon"></span>FRAZIYM TECH &amp; AI</a>
+      <button class="mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path stroke="currentColor" stroke-width="1.5" d="M2 4h12M2 8h12M2 12h12"/></svg>Menu
+      </button>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="product.html" class="active">Product</a>
+        <div class="dropdown">
+          <a href="projects.html" aria-haspopup="true">Projects ▾</a>
+          <div class="dropdown-menu">
+            <a href="zarx.html"><span class="dot dot-amber"></span>ZARX Framework</a>
+            <a href="projects.html#axonix"><span class="dot"></span>AXONIX-ZERO</a>
+            <a href="projects.html#models"><span class="dot"></span>Models</a>
+            <a href="projects.html#agentic"><span class="dot"></span>Agentic Services</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <a href="team.html" aria-haspopup="true">Team ▾</a>
+          <div class="dropdown-menu">
+            <a href="founder.html"><span class="dot"></span>Akik Faraji — Founder &amp; CTO</a>
+            <a href="team.html"><span class="dot"></span>Full Team</a>            <a href="team.html#join"><span class="dot"></span>Join FRAZIYM</a>
+          </div>
+        </div>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="stage.html">Stage</a>
+        <a href="contact.html">Contact</a>
+        <a href="fundraiser.html" style="color:var(--accent-4);">Support ZARX</a>
+        <a class="nav-cta" href="contact.html#demo">Request demo</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="badge badge-accent badge-dot reveal" style="margin-bottom: 24px;">Platform · v1.0.0-beta-A2</div>
+        <h1 class="reveal reveal-delay-1" data-typewriter data-tw-delay="20" data-glitch style="margin-bottom: 20px;">AXONIX-ZERO</h1>
+        <p class="reveal reveal-delay-2" style="color: var(--fg-muted); font-size: clamp(1rem, 1.3vw, 1.15rem); max-width: 580px; margin: 0 0 32px;">
+          The local agentic super AI. Autonomous engineering on your machine — no cloud, no API limits, no data leaving your perimeter.
+        </p>
+        <div class="btn-row reveal reveal-delay-3">
+          <a class="btn btn-primary" href="contact.html#demo">Request demo video</a>
+          <a class="btn btn-ghost" href="https://github.com/Akik-Forazi/AXONIX" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARCHITECTURE -->
+    <section class="section">
+      <div class="container">
+        <div class="section-label reveal">Architecture</div>
+        <h2 class="reveal reveal-delay-1" data-glitch style="margin-bottom: 16px;">Built to run <span class="display">everything</span></h2>
+        <p class="reveal reveal-delay-2" style="color: var(--fg-muted); max-width: 540px; margin-bottom: 40px;">A layered system: unified backend abstraction → typed tool layer → loop engine → streaming UI. Each layer is independently testable and swappable.</p>
+        <div class="card reveal" style="padding: 32px;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1px; background: var(--line);">
+            <div style="background: var(--bg-1); padding: 24px; text-align: center;">
+              <div style="font-family: var(--mono); font-size: 0.72rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 10px;">LAYER 4</div>
+              <div style="font-weight: 600; margin-bottom: 6px;">CLI + Web UI</div>
+              <div style="font-size: 0.82rem; color: var(--fg-muted);">Interactive REPL, SSE streaming dashboard, model manager, file explorer</div>
+            </div>
+            <div style="background: var(--bg-1); padding: 24px; text-align: center;">
+              <div style="font-family: var(--mono); font-size: 0.72rem; color: var(--accent-2); letter-spacing: 0.1em; margin-bottom: 10px;">LAYER 3</div>
+              <div style="font-weight: 600; margin-bottom: 6px;">Loop Engine</div>
+              <div style="font-size: 0.82rem; color: var(--fg-muted);">Plan → Execute → Verify → Replan. Goal mode with multi-cycle orchestration</div>
+            </div>
+            <div style="background: var(--bg-1); padding: 24px; text-align: center;">
+              <div style="font-family: var(--mono); font-size: 0.72rem; color: var(--accent-3); letter-spacing: 0.1em; margin-bottom: 10px;">LAYER 2</div>
+              <div style="font-weight: 600; margin-bottom: 6px;">Agent Core</div>
+              <div style="font-size: 0.82rem; color: var(--fg-muted);">Native tool calling + fallback text parsing. Loop detection, memory, history</div>
+            </div>
+            <div style="background: var(--bg-1); padding: 24px; text-align: center;">
+              <div style="font-family: var(--mono); font-size: 0.72rem; color: var(--accent-4); letter-spacing: 0.1em; margin-bottom: 10px;">LAYER 1</div>
+              <div style="font-weight: 600; margin-bottom: 6px;">Backend Engine</div>
+              <div style="font-size: 0.82rem; color: var(--fg-muted);">8+ providers via unified interface. Factory pattern, auto-detection, health checks</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BACKENDS -->
+    <section id="backends" class="section">
+      <div class="container">
+        <div class="section-label reveal">Inference Backends</div>
+        <h2 class="reveal reveal-delay-1" style="margin-bottom: 40px;">Your model, your rules</h2>
+        <div class="grid-3">
+          <div class="card-feature reveal"><div class="icon">🦙</div><h3>Ollama</h3><p>Local server with native tool calling. Default backend. Supports all Ollama-registered models including Gemma 3, Llama 3.2, Qwen 2.5, Phi-3.5, and more.</p></div>
+          <div class="card-feature reveal reveal-delay-1"><div class="icon">🤖</div><h3>OpenAI-Compatible</h3><p>Covers OpenAI, LM Studio, Groq, Together AI, Mistral, DeepInfra, vLLM — any server exposing the <code style="font-family:var(--mono);font-size:0.85em;">/v1/chat/completions</code> API.</p></div>
+          <div class="card-feature reveal reveal-delay-2"><div class="icon">🧠</div><h3>Anthropic &amp; Gemini</h3><p>Claude (Sonnet, Opus, Haiku) and Google Gemini Flash/Pro via their official APIs. Full SSE streaming with proper message formatting.</p></div>
+          <div class="card-feature reveal reveal-delay-1"><div class="icon">📦</div><h3>llama-cpp-python</h3><p>Run GGUF files directly in-process. GPU offloading with <code style="font-family:var(--mono);font-size:0.85em;">n_gpu_layers</code>, configurable context window, real-time token streaming.</p></div>
+          <div class="card-feature reveal reveal-delay-2"><div class="icon">🤗</div><h3>HuggingFace</h3><p>Load any .safetensors, .bin, or .pt model from a local directory or HF repo. Supports 4-bit and 8-bit quantization via bitsandbytes.</p></div>
+          <div class="card-feature reveal reveal-delay-3"><div class="icon">⚙️</div><h3>KoboldCpp / TextGen</h3><p>Compatibility layer for community servers. Falls back to OpenAI-compatible endpoint if available.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOLS -->
+    <section id="tools" class="section">
+      <div class="container">
+        <div class="section-label reveal">Tool Layer</div>
+        <h2 class="reveal reveal-delay-1" style="margin-bottom: 16px;">20+ tools, ready to use</h2>
+        <p class="reveal reveal-delay-2" style="color: var(--fg-muted); max-width: 500px; margin-bottom: 40px;">All tools use OpenAI function-calling schema and are automatically injected into the system prompt for fallback backends.</p>
+        <div class="grid-4">
+          <div class="card reveal" style="padding: 18px;">
+            <div style="font-family: var(--mono); font-size: 0.72rem; color: var(--accent); margin-bottom: 10px; letter-spacing: 0.1em;">FILES</div>
+            <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 6px;">
+              <li style="font-family: var(--mono); font-size: 0.8rem; color: var(--fg-muted);">file_read</li>
+              <li style="font-family: var(--mono); font-size: 0.8rem; color: var(--fg-muted);">file_write</li>
+              <li style="font-family: var(--mono); font-size: 0.8rem; color: var(--fg-muted);">file_edit</li>
+              <li style="font-family: var(--mono); font-size: 0.8rem; color: var(--fg-muted);">file_delete</li>
+              <li style="font-family: var(--mono); font-size: 0.8rem; color: var(--fg-muted);">file_list</li>
+              <li style="font-family: var(--mono); font-size: 0.8rem; color: var(--fg-muted);">file_search</li>
+              <li style="font-family: var(--mono); font-size: 0.8rem; color: var(--fg-muted);">file_append</li>
+            </ul>
+          </div>
+          <div class="card reveal reveal-delay-1" style="padding: 18px;">
+            <div style="font-family: var(--mono); font-size: 0.72rem; color: var(--accent-2); margin-bottom: 10px; letter-spacing: 0.1em;">SHELL</div>
+            <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 6px;">
+              <li style="font-family: var(--mono); font-size: 0.8rem; color: var(--fg-muted);">shell_run</li>
+              <li style="font-family: var(--mono); font-size: 0.8rem; color: var(--fg-muted);">shell_python</li>
+            </ul>
+            <div style="font-family: var(--mono); font-size: 0.72rem; color: var(--accent-3); margin: 16px 0 10px; letter-spacing: 0.1em;">WEB</div>
+            <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 6px;">
+              <li style="font-family: var(--mono); font-size: 0.8rem; color: var(--fg-muted);">web_get</li>
+              <li style="font-family: var(--mono); font-size: 0.8rem; color: var(--fg-muted);">web_search</li>
+            </ul>
+          </div>
+          <div class="card reveal reveal-delay-2" style="padding: 18px;">
+            <div style="font-family: var(--mono); font-size: 0.72rem; color: var(--accent-4); margin-bottom: 10px; letter-spacing: 0.1em;">CODE</div>
+            <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 6px;">
+              <li style="font-family: var(--mono); font-size: 0.8rem; color: var(--fg-muted);">code_lint</li>
+              <li style="font-family: var(--mono); font-size: 0.8rem; color: var(--fg-muted);">code_format</li>
+              <li style="font-family: var(--mono); font-size: 0.8rem; color: var(--fg-muted);">code_tree</li>
+              <li style="font-family: var(--mono); font-size: 0.8rem; color: var(--fg-muted);">code_analyze</li>
+            </ul>
+          </div>
+          <div class="card reveal reveal-delay-3" style="padding: 18px;">
+            <div style="font-family: var(--mono); font-size: 0.72rem; color: var(--accent); margin-bottom: 10px; letter-spacing: 0.1em;">MEMORY</div>
+            <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 6px;">
+              <li style="font-family: var(--mono); font-size: 0.8rem; color: var(--fg-muted);">memory_save</li>
+              <li style="font-family: var(--mono); font-size: 0.8rem; color: var(--fg-muted);">memory_get</li>
+              <li style="font-family: var(--mono); font-size: 0.8rem; color: var(--fg-muted);">done</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WEB UI -->
+    <section id="web" class="section">
+      <div class="container">
+        <div class="section-label reveal">Web Dashboard</div>
+        <h2 class="reveal reveal-delay-1" style="margin-bottom: 40px;">IDE-like experience, no install</h2>
+        <div class="grid-2">
+          <div class="reveal" style="display: grid; gap: 16px; align-content: start;">
+            <div class="card-feature"><div class="icon">📡</div><h3>Real-time streaming</h3><p>SSE-based token streaming shows the agent's thought process token-by-token. Watch tools execute and results arrive live.</p></div>
+            <div class="card-feature"><div class="icon">📁</div><h3>File Explorer + Editor</h3><p>Browse workspace files, view and edit code directly in the browser without leaving the AXONIX dashboard.</p></div>
+            <div class="card-feature"><div class="icon">📦</div><h3>Model Manager</h3><p>Download GGUF models directly from HuggingFace, track progress, and switch active models — all from the UI.</p></div>
+            <div class="card-feature"><div class="icon">🕐</div><h3>Session History</h3><p>All chats are saved as JSONL files. Browse and replay previous sessions from the history sidebar.</p></div>
+          </div>
+          <div class="reveal reveal-delay-1">
+            <div class="terminal" data-terminal-loop>
+              <div class="terminal-bar">
+                <span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-dot"></span>
+                <span class="terminal-label mono">axonix — web mode · localhost:7860</span>
+              </div>
+              <div class="terminal-body">
+                <span class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">axonix --web --provider ollama --model gemma3:4b</span></span>
+                <span class="t-line"> </span>
+                <span class="t-line"><span class="t-ok">●</span> <span class="t-cmd">ollama</span>  <span class="t-dim">/  gemma3:4b</span></span>
+                <span class="t-line"><span class="t-blue">  Web UI →</span> <span class="t-cmd">http://localhost:7860</span></span>
+                <span class="t-line t-dim">  Web UI active — Ctrl+C to stop</span>
+                <span class="t-line"> </span>
+                <span class="t-line t-dim">  GET  /api/health</span>
+                <span class="t-line t-dim">  GET  /api/models</span>
+                <span class="t-line t-dim">  POST /api/chat         (SSE)</span>
+                <span class="t-line t-dim">  POST /api/model/switch</span>
+                <span class="t-line t-dim">  GET  /api/sessions</span>
+                <span class="t-line t-dim">  GET  /api/files/list</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ZARX -->
+    <section id="zarx" class="section">
+      <div class="container">
+        <div class="section-label reveal">Research Framework</div>
+        <div class="badge badge-dim" style="margin-bottom: 16px; display: inline-flex;">v0.2.4 Technical Report</div>
+        <h2 class="reveal reveal-delay-1" style="margin-bottom: 16px;">ZARX — Sparse Adaptive <span class="display">Intelligence</span></h2>
+        <p class="reveal reveal-delay-2" style="color: var(--fg-muted); max-width: 700px; margin-bottom: 40px; font-size: 1.05rem;">A paradigm shift in LLM architecture achieving state-of-the-art cognitive performance at a fraction of traditional costs. Developed by FRAZIYM AI.</p>
+
+        <div class="card reveal" style="margin-bottom: 32px;">
+          <div class="grid-2" style="gap: 48px;">
+            <div>
+              <h4 style="margin-bottom: 12px; color: var(--accent);">1. HASS Architecture</h4>
+              <p style="color: var(--fg-muted); font-size: 0.95rem; margin-bottom: 16px;">The Hybrid Attention-Shard Switch (HASS) block replaces standard self-attention with a multi-modal manifold containing three distinct pathways:</p>
+              <ul style="list-style: none; color: var(--fg-muted); font-size: 0.9rem; display: grid; gap: 10px; padding: 0;">
+                <li><strong style="color: var(--fg);">Locality-Optimized:</strong> High-precision local context processing.</li>
+                <li><strong style="color: var(--fg);">Low-Rank Global:</strong> Compressed long-range dependencies.</li>
+                <li><strong style="color: var(--fg);">Temporal State Space (TSSK):</strong> Linear-time sequential processing.</li>
+              </ul>
+            </div>
+            <div>
+              <h4 style="margin-bottom: 12px; color: var(--accent);">2. Adaptive Sparse Routing</h4>
+              <p style="color: var(--fg-muted); font-size: 0.95rem; margin-bottom: 16px;">ZARX makes real-time routing decisions for every token, resulting in a model that is 90% sparse during inference.</p>
+              <ul style="list-style: none; color: var(--fg-muted); font-size: 0.9rem; display: grid; gap: 10px; padding: 0;">
+                <li><strong style="color: var(--fg);">Dynamic Compute:</strong> Evaluates "Cognitive Load" per token.</li>
+                <li><strong style="color: var(--fg);">Active Depth:</strong> Variable layer stack resolution (16–24 layers).</li>
+                <li><strong style="color: var(--fg);">Memory Wall Solution:</strong> Disk-sharded Mixture-of-Experts (MoE).</li>
+              </ul>
+            </div>
+          </div>
+          <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line);">
+            <h4 style="margin-bottom: 12px; color: var(--accent);">3. Latent Chain-of-Thought (L-CoT)</h4>
+            <p style="color: var(--fg-muted); font-size: 0.95rem;">Internal Monologue Reasoning across six cognitive components: <strong style="color: var(--fg);">Intention · Decomposition · Confidence · Contradiction · Direction · Summary</strong>.</p>
+          </div>
+        </div>
+
+        <div class="tech-table-container reveal">
+          <table class="tech-table">
+            <thead><tr><th>Variant</th><th>Total Parameters</th><th>Active (Per Token)</th><th>Ideal Deployment</th></tr></thead>
+            <tbody>
+              <tr><td><strong>ZARX-1M</strong></td><td>~1 Million</td><td>&lt; 100K</td><td>IoT &amp; Edge Devices</td></tr>
+              <tr><td><strong>ZARX-10M</strong></td><td>~10 Million</td><td>~1 Million</td><td>High-Speed Mobile AI</td></tr>
+              <tr><td><strong>ZARX-277M</strong></td><td>~280 Million</td><td>~26 Million</td><td>Mid-Tier Flagship (Coding / Logic)</td></tr>
+              <tr><td><strong>ZARX-7B</strong></td><td>~7 Billion</td><td>~600 Million</td><td>Enterprise AGI Research</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="grid-3" style="margin-top: 32px;">
+          <div class="stat reveal"><span class="stat-num">5×</span><span class="stat-label">RAM Reduction</span></div>
+          <div class="stat reveal reveal-delay-1"><span class="stat-num">20×</span><span class="stat-label">CPU Speedup</span></div>
+          <div class="stat reveal reveal-delay-2"><span class="stat-num">90%</span><span class="stat-label">Inference Sparsity</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXECUTION MODES -->
+    <section class="section">
+      <div class="container">
+        <div class="section-label reveal">Execution Modes</div>
+        <h2 class="reveal reveal-delay-1" style="margin-bottom: 40px;">Three ways to run</h2>
+        <div class="grid-3">
+          <div class="card reveal" style="border-color: rgba(77,240,200,0.2);">
+            <div style="font-family: var(--mono); color: var(--accent); font-size: 0.85rem; margin-bottom: 12px;">axonix --lc</div>
+            <h3 style="margin-bottom: 8px;">Interactive Mode</h3>
+            <p style="color: var(--fg-muted); font-size: 0.88rem;">Full REPL with agent/chat/goal sub-modes. Switch models, inspect memory, and run shell commands with <code style="font-family:var(--mono);font-size:0.85em;">!</code>-prefix — without leaving the session.</p>
+          </div>
+          <div class="card reveal reveal-delay-1" style="border-color: rgba(107,123,255,0.2);">
+            <div style="font-family: var(--mono); color: var(--accent-2); font-size: 0.85rem; margin-bottom: 12px;">axonix --goal "…"</div>
+            <h3 style="margin-bottom: 8px;">Goal Mode</h3>
+            <p style="color: var(--fg-muted); font-size: 0.88rem;">The Loop Engine decomposes your goal into atomic sub-tasks, executes each, verifies success with an LLM validator, and replans on failure — up to 5 full cycles.</p>
+          </div>
+          <div class="card reveal reveal-delay-2" style="border-color: rgba(255,107,107,0.2);">
+            <div style="font-family: var(--mono); color: var(--accent-3); font-size: 0.85rem; margin-bottom: 12px;">axonix --web</div>
+            <h3 style="margin-bottom: 8px;">Web UI Mode</h3>
+            <p style="color: var(--fg-muted); font-size: 0.88rem;">Launches the full browser dashboard at localhost:7860. Can be combined with <code style="font-family:var(--mono);font-size:0.85em;">--lc</code> or <code style="font-family:var(--mono);font-size:0.85em;">--goal</code> to run both simultaneously.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-sm">
+      <div class="container">
+        <div class="card reveal" style="text-align: center; padding: clamp(36px, 5vw, 60px);">
+          <h2 style="margin-bottom: 16px;">Ready to run it?</h2>
+          <p style="color: var(--fg-muted); max-width: 460px; margin: 0 auto 28px;">Request a demo video to see AXONIX-ZERO in action, or reach out for private deployment guidance.</p>
+          <div class="btn-row" style="justify-content: center;">
+            <a class="btn btn-primary" href="contact.html#demo">Request demo video</a>
+            <a class="btn btn-ghost" href="pricing.html">View pricing</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container"><div class="footer-grid">
+    <div class="footer-brand"><div class="logo" style="margin-bottom:14px;"><span class="logo-icon"></span>FRAZIYM TECH &amp; AI</div><p>Local-first autonomous AI engineering. Built from scratch in Dhaka, Bangladesh by a 19-year-old who decided the transformer math needed fixing.</p><div class="footer-status"><span class="status-dot"></span>All systems operational</div></div>
+    <div class="footer-col"><h4>Product</h4><a href="zarx.html">ZARX Framework</a><a href="product.html">AXONIX-ZERO</a><a href="product.html#backends">Backends</a><a href="product.html#tools">Tool Layer</a><a href="pricing.html">Pricing</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="about.html">About</a><a href="founder.html">Akik — Founder &amp; CTO</a><a href="sakibul.html">Sakibul — CEO</a><a href="yasir.html">Yasir — CCO</a><a href="team.html">Team</a><a href="stage.html">Stage</a><a href="projects.html">Projects</a></div>
+    <div class="footer-col"><h4>Connect</h4><a href="fundraiser.html" style="color:var(--accent-4);">⭐ Support ZARX</a><a href="contact.html#demo">Request demo</a><a href="mailto:akikfaraji@gmail.com">akikfaraji@gmail.com</a><a href="https://github.com/Akik-Forazi" target="_blank" rel="noopener">GitHub</a><a href="team.html#join">Join the team</a></div>
+  </div><div class="footer-bottom"><span>© 2026 FRAZIYM TECH &amp; AI · All rights reserved · Akik Faraji · Dhaka, Bangladesh</span><span class="mono" style="font-size:0.74rem;">v3.0.0-beta · ZARX v0.2.4 · AXONIX v1.0-beta-A2</span></div></div></footer>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1075 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>FRAZIYM TECH &amp; AI — Local-First Agentic AI Systems</title>
+  <meta name="description" content="FRAZIYM TECH & AI builds local-first autonomous AI systems. AXONIX-ZERO: the autonomous engineering agent. ZARX: sparse adaptive intelligence. Built by Akik Faraji, 19, Bangladesh."/>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    /* ══════════════════════════════════════════
+       DOOMSDAY COUNTDOWN — MILLION DOLLAR EDIT
+    ══════════════════════════════════════════ */
+    #fz-countdown-wrap {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(124,92,252,0.35);
+      border-radius: 2px;
+      background: #000;
+      max-width: 860px;
+      font-family: 'Courier New', monospace;
+    }
+    /* CRT scanlines */
+    #fz-countdown-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        transparent 0px, transparent 2px,
+        rgba(0,0,0,0.18) 2px, rgba(0,0,0,0.18) 4px
+      );
+      pointer-events: none;
+      z-index: 20;
+    }
+    /* top glow line */
+    #fz-countdown-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, #7c5cfc, #4fa3ff, #7c5cfc, transparent);
+      z-index: 21;
+      animation: fz-top-pulse 3s ease-in-out infinite;
+    }
+    @keyframes fz-top-pulse {
+      0%,100% { opacity: 0.7; } 50% { opacity: 1; box-shadow: 0 0 12px rgba(124,92,252,0.8); }
+    }
+
+    /* ── HEADER BAR ── */
+    #fz-cd-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      border-bottom: 1px solid rgba(124,92,252,0.15);
+      background: rgba(124,92,252,0.06);
+    }
+    #fz-cd-header-left {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.62rem; letter-spacing: 0.18em;
+      color: rgba(124,92,252,0.7); text-transform: uppercase;
+    }
+    .fz-cd-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: rgba(124,92,252,1);
+      box-shadow: 0 0 6px rgba(124,92,252,0.9);
+      animation: fz-blink-dot 1.1s step-end infinite;
+    }
+    .fz-cd-dot.red  { background:#ff6b8a; box-shadow:0 0 6px rgba(255,107,138,0.9); animation-delay:0.3s; }
+    .fz-cd-dot.grn  { background:#4adfa0; box-shadow:0 0 6px rgba(74,223,160,0.9); animation-delay:0.6s; }
+    #fz-cd-header-right {
+      font-size: 0.58rem; letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.2);
+    }
+    @keyframes fz-blink-dot { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+
+    /* ── MAIN BODY ── */
+    #fz-cd-body {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 0;
+      position: relative; z-index: 3;
+    }
+    @media (max-width: 680px) {
+      #fz-cd-body { grid-template-columns: 1fr; }
+      #fz-cd-code-panel { display: none; }
+    }
+
+    /* ── LEFT: CLOCK ── */
+    #fz-cd-left {
+      padding: 28px 28px 24px;
+      border-right: 1px solid rgba(124,92,252,0.12);
+    }
+    .fz-cd-warning {
+      font-size: 0.6rem; letter-spacing: 0.22em;
+      color: rgba(124,92,252,0.55); text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .fz-cd-title {
+      font-size: clamp(0.9rem, 2vw, 1.15rem);
+      font-weight: 900; letter-spacing: 0.14em;
+      color: #fff; text-transform: uppercase;
+      margin-bottom: 26px;
+      display: flex; align-items: center; gap: 10px;
+      text-shadow: 0 0 20px rgba(124,92,252,0.6);
+    }
+    #fz-countdown {
+      display: flex; align-items: flex-start;
+      gap: 0; flex-wrap: wrap; margin-bottom: 6px;
+    }
+    .fz-cd-block {
+      display: flex; flex-direction: column; align-items: center;
+      min-width: 90px;
+    }
+    .fz-cd-num {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 700; line-height: 1;
+      letter-spacing: 0.04em; color: #fff;
+      text-shadow: 0 0 18px rgba(124,92,252,0.9), 0 0 36px rgba(124,92,252,0.4);
+      user-select: none;
+    }
+    .fz-cd-ms {
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 700; line-height: 1;
+      letter-spacing: 0.04em;
+      color: rgba(124,92,252,0.7);
+      text-shadow: 0 0 12px rgba(124,92,252,0.5);
+      user-select: none;
+    }
+    .fz-cd-num.fz-glitch-num {
+      color: #7c5cfc !important;
+      text-shadow: 3px 0 rgba(79,163,255,0.9), -3px 0 rgba(255,107,138,0.7), 0 0 24px rgba(124,92,252,1);
+      animation: fz-num-glitch 0.12s steps(1) forwards;
+    }
+    @keyframes fz-num-glitch {
+      0%   { clip-path:inset(20% 0 55% 0); transform:translateX(-4px) skewX(-2deg); }
+      33%  { clip-path:inset(55% 0 10% 0); transform:translateX(4px) skewX(2deg); }
+      66%  { clip-path:inset(30% 0 40% 0); transform:translateX(-2px); }
+      100% { clip-path:none; transform:none; }
+    }
+    .fz-cd-label {
+      font-size: 0.54rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: rgba(124,92,252,0.5);
+      margin-top: 6px;
+    }
+    .fz-cd-sep {
+      font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300;
+      color: rgba(124,92,252,0.35); padding: 0 2px;
+      line-height: 1; align-self: flex-start; margin-top: 2px;
+      animation: fz-blink-dot 1s step-end infinite;
+    }
+    .fz-cd-sep.fz-ms-sep {
+      font-size: clamp(1rem, 2vw, 1.6rem);
+      color: rgba(124,92,252,0.25);
+      animation: none; margin-top: 6px;
+    }
+    .fz-cd-products {
+      margin-top: 20px; display: flex; gap: 8px;
+      align-items: center; flex-wrap: wrap;
+      border-top: 1px solid rgba(124,92,252,0.12);
+      padding-top: 16px;
+    }
+    .fz-cd-prod-tag {
+      font-size: 0.62rem; letter-spacing: 0.1em;
+      padding: 3px 9px;
+      border: 1px solid rgba(124,92,252,0.35);
+      border-radius: 1px; color: rgba(124,92,252,0.85);
+      text-transform: uppercase;
+    }
+    .fz-cd-prod-sep { color: rgba(255,255,255,0.15); font-size: 0.75rem; }
+    .fz-cd-date {
+      font-size: 0.58rem; color: rgba(255,255,255,0.18);
+      letter-spacing: 0.12em; margin-left: auto;
+    }
+
+    /* ── RIGHT: CODE PANEL ── */
+    #fz-cd-code-panel {
+      background: rgba(0,0,0,0.6);
+      border-left: 1px solid rgba(124,92,252,0.12);
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+    #fz-cd-code-header {
+      padding: 8px 14px;
+      border-bottom: 1px solid rgba(124,92,252,0.1);
+      font-size: 0.56rem; letter-spacing: 0.16em;
+      color: rgba(124,92,252,0.45); text-transform: uppercase;
+      display: flex; justify-content: space-between;
+    }
+    #fz-cd-code-stream {
+      flex: 1; overflow: hidden;
+      padding: 10px 14px;
+      display: flex; flex-direction: column;
+      gap: 2px;
+      mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+    }
+    .fz-code-line {
+      font-size: 0.58rem; line-height: 1.6;
+      white-space: nowrap; overflow: hidden;
+      text-overflow: ellipsis;
+      animation: fz-codein 0.15s ease forwards;
+      opacity: 0;
+    }
+    @keyframes fz-codein { to { opacity: 1; } }
+    .fz-code-line.c-purple { color: rgba(124,92,252,0.8); }
+    .fz-code-line.c-blue   { color: rgba(79,163,255,0.75); }
+    .fz-code-line.c-green  { color: rgba(74,223,160,0.7); }
+    .fz-code-line.c-dim    { color: rgba(255,255,255,0.2); }
+    .fz-code-line.c-warn   { color: rgba(255,209,102,0.7); }
+    .fz-code-line.c-red    { color: rgba(255,107,138,0.7); }
+
+    /* glitch flash overlay */
+    #fz-cd-glitch-flash {
+      position: absolute; inset: 0; z-index: 30;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 8px;
+      background: rgba(0,0,0,0.95);
+      opacity: 0; pointer-events: none;
+      font-size: clamp(1.4rem, 3.5vw, 2.6rem);
+      font-weight: 900; letter-spacing: 0.28em;
+      color: rgba(124,92,252,1); text-transform: uppercase;
+      text-shadow: 4px 0 rgba(79,163,255,0.9), -4px 0 rgba(255,107,138,0.8), 0 0 40px rgba(124,92,252,1);
+    }
+    #fz-cd-glitch-flash .fz-flash-sub {
+      font-size: 0.6rem; letter-spacing: 0.3em;
+      color: rgba(124,92,252,0.5); font-weight: 400;
+      text-shadow: none;
+    }
+  </style>
+</head>
+<body>
+<div class="bg-canvas"></div>
+<div class="bg-grid"></div>
+<div class="bg-beam"></div>
+
+<header class="header">
+  <div class="container nav">
+    <a class="logo" href="index.html"><span class="logo-icon"></span>FRAZIYM TECH &amp; AI</a>
+    <button class="mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path stroke="currentColor" stroke-width="1.5" d="M2 4h12M2 8h12M2 12h12"/></svg>Menu
+    </button>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html" class="active">Home</a>
+      <a href="product.html">Product</a>
+      <div class="dropdown">
+        <a href="projects.html" aria-haspopup="true">Projects ▾</a>
+        <div class="dropdown-menu">
+          <a href="zarx.html"><span class="dot dot-amber"></span>ZARX Framework</a>
+          <a href="projects.html#axonix"><span class="dot"></span>AXONIX-ZERO</a>
+          <a href="projects.html#models"><span class="dot"></span>Models</a>
+          <a href="projects.html#agentic"><span class="dot"></span>Agentic Services</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="team.html" aria-haspopup="true">Team ▾</a>
+        <div class="dropdown-menu">
+          <a href="founder.html"><span class="dot"></span>Akik Faraji — Founder &amp; CTO</a>
+          <a href="sakibul.html"><span class="dot"></span>Sakibul Hassan — CEO</a>
+          <a href="yasir.html"><span class="dot"></span>Yasir Arafat — CCO</a>
+          <a href="team.html"><span class="dot"></span>Full Team</a>
+          <a href="team.html#join"><span class="dot"></span>Join FRAZIYM</a>
+        </div>
+      </div>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="stage.html">Stage</a>
+      <a href="contact.html">Contact</a>
+      <a href="fundraiser.html" style="color:var(--accent-4);">Support ZARX</a>
+      <a class="nav-cta" href="contact.html#demo">Request demo</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ══════════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════════ -->
+  <section class="section" style="padding-top:clamp(120px,16vw,200px);padding-bottom:0;">
+    <div class="container" style="align-items:flex-start;text-align:left;">
+
+      <div class="reveal" style="margin-bottom:28px;">
+        <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+          <span class="badge badge-accent badge-dot">Pre-seed · Active</span>
+          <span class="badge badge-dim">Bangladesh 🇧🇩</span>
+          <span class="badge badge-dim" data-ticker data-ticker-items="Local-first AI · Zero cloud required|ZARX v0.2.4 · Architecture ready|AXONIX-ZERO · Beta ~90%|19-year-old founder · Self-taught">Local-first AI · Zero cloud required</span>
+        </div>
+      </div>
+
+      <h1 class="reveal reveal-delay-1" data-hero-type style="margin-bottom:28px;max-width:880px;line-height:1.05;">
+        The next big thing in AI will come from <span class="display">Fraziym & Akik.</span>
+      </h1>
+
+      <p class="reveal reveal-delay-2" style="font-size:clamp(1rem,1.5vw,1.25rem);color:var(--fg-muted);max-width:640px;margin:0 0 40px;line-height:1.75;">
+        FRAZIYM builds local-first autonomous AI systems that give enterprises big-tech intelligence — without handing over their data, privacy, or control. One 19-year-old. One laptop. Two systems that shouldn't exist yet. They do.
+      </p>
+
+      <div class="btn-row reveal reveal-delay-3" style="margin-bottom:48px;">
+        <a class="btn btn-primary btn-lg" href="product.html">Explore AXONIX-ZERO →</a>
+        <a class="btn btn-ghost btn-lg" href="zarx.html">ZARX Architecture</a>
+        <a class="btn btn-ghost" href="stage.html">Company stage</a>
+      </div>
+
+      <!-- LAUNCH COUNTDOWN -->
+      <div class="reveal reveal-delay-4" style="margin-bottom:64px;width:100%;max-width:860px;">
+        <div id="fz-countdown-wrap">
+          <div id="fz-cd-glitch-flash">
+            <span id="fz-flash-word">LAUNCH.EXE</span>
+            <span class="fz-flash-sub">FRAZIYM TECH &amp; AI · SYSTEM OVERRIDE</span>
+          </div>
+
+          <!-- header bar -->
+          <div id="fz-cd-header">
+            <div id="fz-cd-header-left">
+              <span class="fz-cd-dot"></span>
+              <span class="fz-cd-dot red"></span>
+              <span class="fz-cd-dot grn"></span>
+              &nbsp;//&nbsp; FRAZIYM_LAUNCH_SEQUENCE.exe &nbsp;·&nbsp; PID:2027
+            </div>
+            <div id="fz-cd-header-right">SYS:ACTIVE &nbsp;|&nbsp; ENC:AES-256 &nbsp;|&nbsp; <span id="fz-cd-uptime">00:00:00</span></div>
+          </div>
+
+          <!-- body -->
+          <div id="fz-cd-body">
+
+            <!-- LEFT: clock -->
+            <div id="fz-cd-left">
+              <div class="fz-cd-warning">// TARGET LOCK CONFIRMED · RELEASE VECTOR LOCKED</div>
+              <div class="fz-cd-title">
+                <span class="fz-cd-dot" style="width:9px;height:9px;"></span>
+                RELEASE IS COMING
+              </div>
+
+              <div id="fz-countdown">
+                <div class="fz-cd-block">
+                  <div class="fz-cd-num" id="fz-cd-days">000</div>
+                  <div class="fz-cd-label">Days</div>
+                </div>
+                <div class="fz-cd-sep">:</div>
+                <div class="fz-cd-block">
+                  <div class="fz-cd-num" id="fz-cd-hours">00</div>
+                  <div class="fz-cd-label">Hours</div>
+                </div>
+                <div class="fz-cd-sep">:</div>
+                <div class="fz-cd-block">
+                  <div class="fz-cd-num" id="fz-cd-mins">00</div>
+                  <div class="fz-cd-label">Mins</div>
+                </div>
+                <div class="fz-cd-sep">:</div>
+                <div class="fz-cd-block">
+                  <div class="fz-cd-num" id="fz-cd-secs">00</div>
+                  <div class="fz-cd-label">Secs</div>
+                </div>
+                <div class="fz-cd-sep fz-ms-sep" style="padding:0 1px;">.</div>
+                <div class="fz-cd-block" style="min-width:60px;">
+                  <div class="fz-cd-ms" id="fz-cd-ms">000</div>
+                  <div class="fz-cd-label">Ms</div>
+                </div>
+              </div>
+
+              <div class="fz-cd-products">
+                <span class="fz-cd-prod-tag">AXONIX-ZERO v1.0</span>
+                <span class="fz-cd-prod-sep">+</span>
+                <span class="fz-cd-prod-tag">ZARX-ZERO Model</span>
+                <span class="fz-cd-date">JAN 01 · 2027 · 00:00:00</span>
+              </div>
+            </div>
+
+            <!-- RIGHT: hacker code stream -->
+            <div id="fz-cd-code-panel">
+              <div id="fz-cd-code-header">
+                <span>// LIVE SYSTEM FEED</span>
+                <span id="fz-cd-mem">MEM: 0.0%</span>
+              </div>
+              <div id="fz-cd-code-stream"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Live stats row -->
+      <div class="grid-4 reveal reveal-delay-3" style="width:100%;margin-bottom:64px;">
+        <div class="stat" data-tilt>
+          <span class="stat-num" data-count="8" data-suffix="+">8+</span>
+          <span class="stat-label">LLM backends</span>
+        </div>
+        <div class="stat" data-tilt>
+          <span class="stat-num" data-count="20" data-suffix="+">20+</span>
+          <span class="stat-label">Agent tools built-in</span>
+        </div>
+        <div class="stat" data-tilt>
+          <span class="stat-num">277M</span>
+          <span class="stat-label">ZARX flagship params</span>
+        </div>
+        <div class="stat" data-tilt>
+          <span class="stat-num">90%</span>
+          <span class="stat-label">Inference sparsity</span>
+        </div>
+      </div>
+
+      <!-- Terminal -->
+      <div class="terminal reveal reveal-delay-2" data-terminal-loop style="width:100%;max-width:800px;margin:0 auto 0;">
+        <div class="terminal-bar">
+          <span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-dot"></span>
+          <span class="terminal-label mono">axonix — interactive agent · gemma3:4b via ollama</span>
+        </div>
+        <div class="terminal-body">
+          <span class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">axonix --lc --provider ollama --model gemma3:4b</span></span>
+          <span class="t-line t-dim">  ● ollama / gemma3:4b  ·  tools: 20  ·  memory: active</span>
+          <span class="t-line"> </span>
+          <span class="t-line t-dim">╭─ workspace [agent mode]</span>
+          <span class="t-line t-dim">╰─ </span><span class="t-line"><span class="t-cmd">build a REST API for a todo app with SQLite and auth</span></span>
+          <span class="t-line"> </span>
+          <span class="t-line"><span class="t-blue">⟳</span> <span class="t-cmd">file_write</span>  <span class="t-dim">path='main.py'  chars=2,341</span></span>
+          <span class="t-line"><span class="t-ok">✓</span>  <span class="t-dim">Saved main.py — Flask app, 5 routes, JWT auth</span></span>
+          <span class="t-line"><span class="t-blue">⟳</span> <span class="t-cmd">shell_run</span>   <span class="t-dim">command='pip install flask flask-jwt-extended'</span></span>
+          <span class="t-line"><span class="t-ok">✓</span>  <span class="t-dim">Dependencies installed. Exit code: 0</span></span>
+          <span class="t-line"><span class="t-blue">⟳</span> <span class="t-cmd">file_write</span>  <span class="t-dim">path='models.py'  chars=892</span></span>
+          <span class="t-line"><span class="t-ok">✓</span>  <span class="t-dim">SQLite schema: users, todos, sessions</span></span>
+          <span class="t-line"><span class="t-blue">⟳</span> <span class="t-cmd">code_lint</span>   <span class="t-dim">path='main.py'</span></span>
+          <span class="t-line"><span class="t-ok">✓</span>  <span class="t-dim">0 errors, 0 warnings</span></span>
+          <span class="t-line"><span class="t-blue">⟳</span> <span class="t-cmd">shell_run</span>   <span class="t-dim">command='python -m pytest tests/ -q'</span></span>
+          <span class="t-line"><span class="t-ok">✓</span>  <span class="t-dim">12 passed in 1.34s</span></span>
+          <span class="t-line"><span class="t-blue">⟳</span> <span class="t-cmd">done</span>  <span class="t-dim">REST API complete — 5 endpoints, JWT auth, SQLite, all tests pass</span></span>
+          <span class="t-line"> </span>
+          <span class="t-line t-ok">  Task completed in 6 steps. 0 data sent to cloud.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       WHAT WE ARE
+  ══════════════════════════════════════════════ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label reveal">What FRAZIYM Is</div>
+      <h2 class="reveal reveal-delay-1" data-type-header data-glitch style="margin-bottom:20px;">Not a wrapper. Not a chatbot.</h2>
+      <p class="reveal reveal-delay-2" style="color:var(--fg-muted);max-width:660px;margin-bottom:56px;font-size:1.05rem;line-height:1.8;">
+        Every AI startup in 2025 built a wrapper around GPT-4 and called it innovation. FRAZIYM built original architectures — a sparse transformer that rewrites the math of how LLMs work, and an autonomous agent that runs entirely air-gapped on your device. No wrapper. No API middleman. No excuses.
+      </p>
+      <div class="grid-3">
+        <div class="card-feature reveal" data-tilt>
+          <div class="icon">🧬</div>
+          <h3>Original Research</h3>
+          <p>ZARX is not fine-tuned GPT. It's a from-scratch sparse adaptive architecture with HASS attention blocks, disk-sharded MoE, and Latent Chain-of-Thought — designed to do more with 90% fewer active parameters.</p>
+        </div>
+        <div class="card-feature reveal reveal-delay-1" data-tilt>
+          <div class="icon">🏠</div>
+          <h3>Truly Local</h3>
+          <p>AXONIX-ZERO runs on your machine using your own models. Files don't leave your filesystem. Tokens don't leave your RAM. No telemetry. No cloud dependency. Full air-gap capability.</p>
+        </div>
+        <div class="card-feature reveal reveal-delay-2" data-tilt>
+          <div class="icon">🔍</div>
+          <h3>Radical Transparency</h3>
+          <p>We show you the real build: beta status, what's broken, what's being fixed, what the roadmap actually is. No "GPT-5 level" claims. Just verified architecture, real test outputs, honest numbers.</p>
+        </div>
+        <div class="card-feature reveal reveal-delay-1" data-tilt>
+          <div class="icon">⚡</div>
+          <h3>Extreme Efficiency</h3>
+          <p>ZARX-277M achieves 3B–7B model quality at 26M active parameters per token. That's a 50× cost reduction. Not a projection — it's the verified architecture result from the current codebase.</p>
+        </div>
+        <div class="card-feature reveal reveal-delay-2" data-tilt>
+          <div class="icon">🔄</div>
+          <h3>Autonomous Loops</h3>
+          <p>AXONIX-ZERO doesn't just answer questions. It plans, executes, verifies, and replans — up to 5 full autonomous cycles with loop detection, retry logic, and LLM-verified task completion.</p>
+        </div>
+        <div class="card-feature reveal reveal-delay-3" data-tilt>
+          <div class="icon">🌍</div>
+          <h3>Built Different</h3>
+          <p>One 19-year-old in Dhaka, Bangladesh. Laptop CPU only. No VC funding, no GPU cluster, no team. The architecture works because the math is right — not because we threw compute at it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       PRODUCTS DEEP DIVE
+  ══════════════════════════════════════════════ -->
+  <section class="section" style="background:rgba(124,92,252,0.02);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    <div class="container">
+      <div class="section-label reveal">Products</div>
+      <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom:56px;">Two systems. Both shipping.</h2>
+
+      <!-- AXONIX-ZERO -->
+      <div class="card reveal" style="margin-bottom:24px;border-color:rgba(77,240,200,0.2);" data-tilt>
+        <div class="grid-2" style="gap:48px;align-items:start;">
+          <div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;">
+              <span class="badge badge-accent badge-dot">Beta · Active</span>
+              <span class="badge badge-dim">v1.0.0-beta-A2</span>
+              <span class="badge badge-dim">Windows</span>
+              <span class="badge badge-cyan">~90% complete</span>
+            </div>
+            <h2 style="margin-bottom:14px;font-size:clamp(1.6rem,2.5vw,2.4rem);">AXONIX-ZERO</h2>
+            <p style="color:var(--fg-muted);line-height:1.8;margin-bottom:24px;font-size:1rem;">
+              The autonomous engineering agent that runs entirely on your machine. You give it a goal — it plans, executes, verifies, debugs, and delivers. No cloud. No API keys needed. No data leaves your device. Ships as a standalone <code>axonix.exe</code> for Windows.
+            </p>
+            <div style="display:grid;gap:10px;margin-bottom:28px;">
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.88rem;">
+                <span style="color:var(--accent-5);font-weight:700;">✓</span>
+                <span style="color:var(--fg-muted);">8+ LLM backends — Ollama, LM Studio, Anthropic, OpenAI, Gemini, Groq, llama-cpp, HuggingFace</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.88rem;">
+                <span style="color:var(--accent-5);font-weight:700;">✓</span>
+                <span style="color:var(--fg-muted);">20+ tools — file R/W/edit/search, shell, Python sandbox, web fetch, DuckDuckGo, code lint, format, memory</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.88rem;">
+                <span style="color:var(--accent-5);font-weight:700;">✓</span>
+                <span style="color:var(--fg-muted);">Loop engine — Plan → Execute → Verify → Replan, up to 5 cycles, loop detection, per-task retry</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.88rem;">
+                <span style="color:var(--accent-5);font-weight:700;">✓</span>
+                <span style="color:var(--fg-muted);">Web dashboard — SSE streaming, file explorer, code editor, model manager, session history at localhost:7860</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.88rem;">
+                <span style="color:var(--accent-5);font-weight:700;">✓</span>
+                <span style="color:var(--fg-muted);">Persistent memory — key-value knowledge base across sessions, automatic context preservation</span>
+              </div>
+            </div>
+            <div class="btn-row">
+              <a class="btn btn-primary" href="product.html">Full details</a>
+              <a class="btn btn-ghost" href="contact.html#demo">Request demo video</a>
+              <a class="btn btn-ghost" href="https://github.com/Akik-Forazi/AXONIX" target="_blank" rel="noopener">GitHub →</a>
+            </div>
+          </div>
+          <div>
+            <div class="terminal" data-terminal-loop data-terminal-speed="fast">
+              <div class="terminal-bar">
+                <span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-dot"></span>
+                <span class="terminal-label mono">axonix --goal "refactor auth module"</span>
+              </div>
+              <div class="terminal-body">
+                <span class="t-line t-dim">  [GOAL MODE]  refactor auth module</span>
+                <span class="t-line t-dim">  planning...</span>
+                <span class="t-line"> </span>
+                <span class="t-line t-dim">  Cycle 1/5  ·  4 sub-tasks identified</span>
+                <span class="t-line"> </span>
+                <span class="t-line"><span class="t-blue">⟳</span> <span class="t-cmd">file_read</span>  <span class="t-dim">path='auth.py'</span></span>
+                <span class="t-line"><span class="t-ok">✓</span>  <span class="t-dim">Read 312 lines</span></span>
+                <span class="t-line"><span class="t-blue">⟳</span> <span class="t-cmd">code_analyze</span>  <span class="t-dim">path='auth.py'</span></span>
+                <span class="t-line"><span class="t-warn">!</span>  <span class="t-dim">3 issues: bare except, hardcoded secret, no rate limit</span></span>
+                <span class="t-line"><span class="t-blue">⟳</span> <span class="t-cmd">file_edit</span>  <span class="t-dim">6 patches applied</span></span>
+                <span class="t-line"><span class="t-ok">✓</span>  <span class="t-dim">auth.py refactored</span></span>
+                <span class="t-line"><span class="t-blue">⟳</span> <span class="t-cmd">shell_run</span>  <span class="t-dim">pytest tests/test_auth.py -v</span></span>
+                <span class="t-line"><span class="t-ok">✓</span>  <span class="t-dim">8/8 passed</span></span>
+                <span class="t-line"><span class="t-blue">⟳</span> <span class="t-cmd">done</span></span>
+                <span class="t-line"> </span>
+                <span class="t-line t-ok">  Goal achieved. 0 bytes sent externally.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ZARX -->
+      <div class="card reveal" style="border-color:rgba(107,123,255,0.2);" data-tilt>
+        <div class="grid-2" style="gap:48px;align-items:start;">
+          <div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;">
+              <span class="badge badge-warn badge-dot">Research · Active</span>
+              <span class="badge badge-dim">v0.2.4</span>
+              <span class="badge badge-accent">Architecture Ready</span>
+            </div>
+            <h2 style="margin-bottom:14px;font-size:clamp(1.6rem,2.5vw,2.4rem);">ZARX Framework</h2>
+            <p style="color:var(--fg-muted);line-height:1.8;margin-bottom:24px;font-size:1rem;">
+              Sparse Adaptive Intelligence — a from-scratch LLM architecture that routes each token through only the compute it actually needs. The result: 277M total parameters, 26M active per token, reasoning quality matching dense 3B–7B models. 90% sparsity at inference time. The architecture that founded FRAZIYM.
+            </p>
+            <div class="grid-3" style="gap:14px;margin-bottom:28px;">
+              <div style="padding:14px;background:rgba(124,92,252,0.05);border:1px solid var(--line);border-radius:var(--radius-sm);text-align:center;">
+                <div style="font-family:var(--mono);font-size:1.4rem;font-weight:700;color:var(--accent-light);margin-bottom:4px;">9.4%</div>
+                <div style="font-size:0.72rem;color:var(--fg-dim);">Active params / token</div>
+              </div>
+              <div style="padding:14px;background:rgba(79,163,255,0.05);border:1px solid var(--line);border-radius:var(--radius-sm);text-align:center;">
+                <div style="font-family:var(--mono);font-size:1.4rem;font-weight:700;color:var(--accent-2);margin-bottom:4px;">50×</div>
+                <div style="font-size:0.72rem;color:var(--fg-dim);">Cost reduction</div>
+              </div>
+              <div style="padding:14px;background:rgba(77,240,200,0.05);border:1px solid var(--line);border-radius:var(--radius-sm);text-align:center;">
+                <div style="font-family:var(--mono);font-size:1.4rem;font-weight:700;color:var(--accent-5);margin-bottom:4px;">100%</div>
+                <div style="font-size:0.72rem;color:var(--fg-dim);">Gradient coverage</div>
+              </div>
+            </div>
+            <div class="btn-row">
+              <a class="btn btn-primary" href="zarx.html">Full architecture →</a>
+              <a class="btn btn-ghost" href="fundraiser.html" style="border-color:rgba(255,209,102,0.3);color:var(--accent-4);">Fund GPU training</a>
+            </div>
+          </div>
+          <div>
+            <div class="terminal" data-terminal-speed="fast">
+              <div class="terminal-bar">
+                <span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-dot"></span>
+                <span class="terminal-label mono">test_all_fixes.py — ZARX v0.2.4</span>
+              </div>
+              <div class="terminal-body">
+                <span class="t-line t-dim"># ZARX v0.2.4 full verification</span>
+                <span class="t-line"> </span>
+                <span class="t-line"><span class="t-ok">✓</span> <span class="t-dim">Model built — 4,021,477 params (ZARX-1M)</span></span>
+                <span class="t-line"><span class="t-ok">✓</span> <span class="t-dim">Forward pass — output: torch.Size([2,8,4069])</span></span>
+                <span class="t-line"><span class="t-ok">✓</span> <span class="t-dim">Backward pass — loss: 9.6762 (stable)</span></span>
+                <span class="t-line"><span class="t-ok">✓</span> <span class="t-dim">Gradients: 327/327 (100%)</span></span>
+                <span class="t-line"><span class="t-ok">✓</span> <span class="t-dim">HASS pathways — local, global, TSSK verified</span></span>
+                <span class="t-line"><span class="t-ok">✓</span> <span class="t-dim">Latent CoT — 6 components active</span></span>
+                <span class="t-line"><span class="t-ok">✓</span> <span class="t-dim">Disk-sharded MoE — LRU cache OK</span></span>
+                <span class="t-line"><span class="t-ok">✓</span> <span class="t-dim">Tokenizer — BPE 32k vocab functional</span></span>
+                <span class="t-line"><span class="t-ok">✓</span> <span class="t-dim">Deterministic inference verified</span></span>
+                <span class="t-line"> </span>
+                <span class="t-line t-ok">  ALL TESTS PASSED ✓✓✓</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       BACKENDS
+  ══════════════════════════════════════════════ -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="section-label reveal">Inference Backends</div>
+      <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom:16px;">Your model. Your rules.</h2>
+      <p class="reveal reveal-delay-2" style="color:var(--fg-muted);max-width:560px;margin-bottom:32px;">AXONIX-ZERO works with everything. One unified interface — your tools and prompts behave identically regardless of which backend is active.</p>
+      <div class="card reveal">
+        <div class="backend-grid">
+          <span class="backend-tag">🦙 Ollama</span>
+          <span class="backend-tag">🤖 OpenAI API</span>
+          <span class="backend-tag">🏢 LM Studio</span>
+          <span class="backend-tag">🧠 Anthropic / Claude</span>
+          <span class="backend-tag">✨ Google Gemini</span>
+          <span class="backend-tag">⚡ Groq</span>
+          <span class="backend-tag">🌐 Together AI</span>
+          <span class="backend-tag">🌊 Mistral</span>
+          <span class="backend-tag">📦 llama-cpp-python</span>
+          <span class="backend-tag">🖥 llama-server</span>
+          <span class="backend-tag">🤗 HuggingFace Transformers</span>
+          <span class="backend-tag">⚙️ KoboldCpp</span>
+          <span class="backend-tag">🔗 Any OpenAI-compatible API</span>
+        </div>
+        <p style="font-size:0.82rem;color:var(--fg-dim);margin-top:18px;">Any Ollama model or local GGUF file works too. The backend list grows as new providers ship compatible APIs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       THE TEAM TEASER
+  ══════════════════════════════════════════════ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label reveal">The Team</div>
+      <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom:16px;">Small team. Outsized output.</h2>
+      <p class="reveal reveal-delay-2" style="color:var(--fg-muted);max-width:580px;margin-bottom:48px;">Currently a solo operation built by one founder. Leadership positions are open for the right people who believe in local-first AI.</p>
+      <div class="team-grid reveal reveal-delay-2">
+
+        <!-- Akik -->
+        <div class="person-card available" data-tilt onclick="location.href='founder.html'">
+          <div class="person-avatar">
+            <img src="founder.png" alt="Akik Faraji" onerror="this.style.display='none';this.parentNode.querySelector('.person-avatar-placeholder').style.display='flex'" style="transform: scale(3.6) translateY(-17%);">
+            <div class="person-avatar-placeholder" style="display:none;">AF</div>
+          </div>
+          <div class="person-name">Akik Faraji</div>
+          <div class="person-role">Founder &amp; CEO</div>
+          <div class="person-bio">19. Dhaka, Bangladesh. Self-taught. Built ZARX and AXONIX-ZERO from scratch on a laptop CPU. Dropped board exams to write transformers.</div>
+          <div class="person-tags">
+            <span class="person-tag">Python</span>
+            <span class="person-tag">Deep Learning</span>
+            <span class="person-tag">LLM Infra</span>
+            <span class="person-tag">Full-Stack</span>
+          </div>
+        </div>
+
+        <!-- Sakibul Hassan — Director & CEO -->
+        <div class="person-card available" data-tilt onclick="location.href='sakibul.html'" style="cursor:pointer;">
+          <div class="person-avatar" style="overflow:hidden;">
+            <img src="sakibul.jpg" alt="Sakibul Hassan" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="transform: scale(1) translateX(calc(2% - 1px)) translateY(calc(0.1% - 2px));">
+            <div class="person-avatar-placeholder" style="display:none;">SH</div>
+          </div>
+          <div class="person-name">Sakibul Hassan</div>
+          <div class="person-role">Director &amp; CEO</div>
+          <div class="person-bio">The strategic and operational leader of FRAZIYM. Sakibul drives the company's direction, partnerships, and growth — translating Akik's technical vision into a viable, scalable business.</div>
+          <div class="person-tags">
+            <span class="person-tag">Leadership</span>
+            <span class="person-tag">Strategy</span>
+            <span class="person-tag">Operations</span>
+            <span class="person-tag">Growth</span>
+          </div>
+          <div style="margin-top:16px;">
+            <a class="btn btn-ghost btn-sm" href="sakibul.html" onclick="event.stopPropagation()">Full profile →</a>
+          </div>
+        </div>
+
+        <!-- Co-founder Yasir Arafat -->
+      <div class="person-card available" data-tilt onclick="location.href='yasir.html'" style="cursor:pointer;">
+        <div class="person-avatar">
+          <div class="person-avatar-placeholder" style="display:flex;">YA</div>
+        </div>
+        <div class="person-name">Yasir Arafat</div>
+        <div class="person-role">Co-founder &amp; CCO</div>
+        <div class="person-bio">Co-founder and Chief Creative Officer of FRAZIYM. Yasir shapes the brand, design, and creative identity — turning cutting-edge AI technology into something people can connect with and understand.</div>
+        <div class="person-tags">
+          <span class="person-tag">Creative Direction</span>
+          <span class="person-tag">Brand</span>
+          <span class="person-tag">Design</span>
+          <span class="person-tag">Communication</span>
+        </div>
+        <div style="margin-top:16px;">
+          <a class="btn btn-ghost btn-sm" href="yasir.html" onclick="event.stopPropagation()">Full profile →</a>
+        </div>
+      </div>
+      </div>
+      <div style="text-align:center;margin-top:32px;" class="reveal">
+        <a class="btn btn-ghost" href="team.html">View full team page →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       ZARX DEEP STATS
+  ══════════════════════════════════════════════ -->
+  <section class="section" style="background:rgba(107,123,255,0.02);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    <div class="container">
+      <div class="section-label reveal">ZARX Numbers</div>
+      <h2 class="reveal reveal-delay-1" data-type-header data-glitch style="margin-bottom:48px;">The math that makes it real.</h2>
+      <div class="grid-4" style="margin-bottom:40px;">
+        <div class="stat reveal" data-tilt><span class="stat-num">277M</span><span class="stat-label">Total parameters</span></div>
+        <div class="stat reveal reveal-delay-1" data-tilt><span class="stat-num">26M</span><span class="stat-label">Active per token</span></div>
+        <div class="stat reveal reveal-delay-2" data-tilt><span class="stat-num">192</span><span class="stat-label">Expert count (MoE)</span></div>
+        <div class="stat reveal reveal-delay-3" data-tilt><span class="stat-num">6</span><span class="stat-label">CoT components</span></div>
+      </div>
+      <div class="grid-3">
+        <div class="card reveal" data-tilt>
+          <div class="badge badge-warn" style="margin-bottom:14px;">HASS Architecture</div>
+          <h3 style="margin-bottom:10px;">3-pathway attention</h3>
+          <p style="color:var(--fg-muted);font-size:0.88rem;line-height:1.7;">Locality-optimized, Low-rank global, and Temporal State Space pathways. The router picks the cheapest one that maintains quality — per token, every token.</p>
+        </div>
+        <div class="card reveal reveal-delay-1" data-tilt>
+          <div class="badge badge-accent" style="margin-bottom:14px;">Disk-Sharded MoE</div>
+          <h3 style="margin-bottom:10px;">192 experts, 2 active</h3>
+          <p style="color:var(--fg-muted);font-size:0.88rem;line-height:1.7;">Experts live on disk. A predictive LRU cache keeps hot ones in RAM. Pre-fetching eliminates disk latency from the inference path. No VRAM required for the full expert set.</p>
+        </div>
+        <div class="card reveal reveal-delay-2" data-tilt>
+          <div class="badge badge-blue" style="margin-bottom:14px;">Latent CoT</div>
+          <h3 style="margin-bottom:10px;">Internal reasoning state</h3>
+          <p style="color:var(--fg-muted);font-size:0.88rem;line-height:1.7;">A 6-vector internal state (Intention · Decomposition · Confidence · Contradiction · Direction · Summary) evolves layer by layer. The model reasons before it speaks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       PORTFOLIO
+  ══════════════════════════════════════════════ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label reveal">Full Portfolio</div>
+      <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom:16px;">What's being built.</h2>
+      <p class="reveal reveal-delay-2" style="color:var(--fg-muted);max-width:560px;margin-bottom:48px;">Active projects, research work, and the roadmap for what comes next. Everything is open-status — no marketing fluff.</p>
+      <div class="grid-3">
+        <div class="card reveal" style="border-color:rgba(77,240,200,0.2);" data-tilt>
+          <div class="badge badge-accent badge-dot" style="margin-bottom:16px;">Active · Beta</div>
+          <h3 style="margin-bottom:10px;">AXONIX-ZERO</h3>
+          <p style="color:var(--fg-muted);font-size:0.9rem;margin:0 0 8px;line-height:1.65;">Autonomous engineering agent. 8 backends, 20 tools, loop engine, web dashboard. Standalone Windows executable.</p>
+          <p style="font-family:var(--mono);font-size:0.72rem;color:var(--fg-dim);margin-bottom:16px;">Status: ~90% complete · Active debugging</p>
+          <a href="product.html" class="btn btn-ghost btn-sm">Full details →</a>
+        </div>
+        <div class="card reveal reveal-delay-1" style="border-color:rgba(107,123,255,0.18);" data-tilt>
+          <div class="badge badge-warn badge-dot" style="margin-bottom:16px;">Research · Active</div>
+          <h3 style="margin-bottom:10px;">ZARX Framework</h3>
+          <p style="color:var(--fg-muted);font-size:0.9rem;margin:0 0 8px;line-height:1.65;">Sparse Adaptive Intelligence. HASS attention, disk-sharded MoE, L-CoT. The research project that founded this company.</p>
+          <p style="font-family:var(--mono);font-size:0.72rem;color:var(--fg-dim);margin-bottom:16px;">Status: Architecture done · Awaiting GPU</p>
+          <a href="zarx.html" class="btn btn-ghost btn-sm">Architecture →</a>
+        </div>
+        <div class="card reveal reveal-delay-2" data-tilt>
+          <div class="badge badge-dim" style="margin-bottom:16px;">Roadmap</div>
+          <h3 style="margin-bottom:10px;">Agentic Services</h3>
+          <p style="color:var(--fg-muted);font-size:0.9rem;margin:0 0 8px;line-height:1.65;">Custom autonomous systems for enterprise — QA automation, infra watchtower, continuous code review, deployment playbooks.</p>
+          <p style="font-family:var(--mono);font-size:0.72rem;color:var(--fg-dim);margin-bottom:16px;">Status: Design phase · Inquiries open</p>
+          <a href="contact.html#demo" class="btn btn-ghost btn-sm">Inquire →</a>
+        </div>
+        <div class="card reveal reveal-delay-1" data-tilt>
+          <div class="badge badge-dim" style="margin-bottom:16px;">Roadmap</div>
+          <h3 style="margin-bottom:10px;">FRAZIYM Studio</h3>
+          <p style="color:var(--fg-muted);font-size:0.9rem;margin:0 0 8px;line-height:1.65;">Team AI workspace. Shared memory, multi-agent workflows, project-level context, role-based access. Local deployment only.</p>
+          <p style="font-family:var(--mono);font-size:0.72rem;color:var(--fg-dim);margin-bottom:16px;">Status: Concept phase</p>
+          <a href="projects.html" class="btn btn-ghost btn-sm">See all →</a>
+        </div>
+        <div class="card reveal reveal-delay-2" data-tilt>
+          <div class="badge badge-dim" style="margin-bottom:16px;">Roadmap</div>
+          <h3 style="margin-bottom:10px;">FRAZIYM Foundry</h3>
+          <p style="color:var(--fg-muted);font-size:0.9rem;margin:0 0 8px;line-height:1.65;">Fine-tuning pipelines, GGUF quantization, release gates, private model registry. For teams running their own ZARX variants.</p>
+          <p style="font-family:var(--mono);font-size:0.72rem;color:var(--fg-dim);margin-bottom:16px;">Status: Post-ZARX-training milestone</p>
+          <a href="projects.html" class="btn btn-ghost btn-sm">See all →</a>
+        </div>
+        <div class="card reveal reveal-delay-3" data-tilt>
+          <div class="badge badge-dim" style="margin-bottom:16px;">Roadmap</div>
+          <h3 style="margin-bottom:10px;">ZARX Desktop App</h3>
+          <p style="color:var(--fg-muted);font-size:0.9rem;margin:0 0 8px;line-height:1.65;">Tauri + React UI with FastAPI inference server. Full offline ZARX deployment. No cloud dependency, no Python install needed.</p>
+          <p style="font-family:var(--mono);font-size:0.72rem;color:var(--fg-dim);margin-bottom:16px;">Status: Phase 6 of ZARX roadmap</p>
+          <a href="zarx.html" class="btn btn-ghost btn-sm">Roadmap →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       FUNDRAISER TEASER
+  ══════════════════════════════════════════════ -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="card reveal" style="border-color:rgba(255,209,102,0.25);background:rgba(255,209,102,0.02);">
+        <div class="grid-2" style="gap:48px;align-items:center;">
+          <div>
+            <div class="badge badge-warn badge-dot" style="margin-bottom:18px;">Community Fundraiser · Active</div>
+            <h2 style="margin-bottom:14px;font-size:clamp(1.4rem,2.2vw,2rem);">Help train ZARX on real GPUs</h2>
+            <p style="color:var(--fg-muted);font-size:0.95rem;margin:0 0 20px;line-height:1.8;">
+              The architecture is done. The code passes every test. The math checks out. What's missing is a GPU that can run the large-scale training run on WikiText-103 and OpenWebText. Goal: $8,000 for a 3-month cloud GPU lease. No equity. Full transparency. Every update posted publicly.
+            </p>
+            <p style="color:var(--fg-muted);font-size:0.88rem;margin:0 0 24px;line-height:1.7;">
+              Akik is 19, from Dhaka, Bangladesh, training on a laptop CPU with no external funding. This fundraiser is the bridge between "architecture proven" and "weights published on HuggingFace."
+            </p>
+            <div class="btn-row">
+              <a class="btn btn-primary" href="fundraiser.html" style="background:var(--accent-4);color:#111;">View fundraiser →</a>
+              <a class="btn btn-ghost" href="zarx.html">Why ZARX matters</a>
+            </div>
+          </div>
+          <div style="display:grid;gap:14px;">
+            <div style="padding:20px;background:rgba(255,209,102,0.05);border:1px solid rgba(255,209,102,0.15);border-radius:var(--radius);">
+              <div style="font-family:var(--mono);font-size:0.7rem;color:var(--accent-4);letter-spacing:0.1em;margin-bottom:8px;">WHAT THE MONEY DOES</div>
+              <div style="font-size:0.88rem;color:var(--fg-muted);line-height:1.7;">3-month cloud GPU lease → large-scale ZARX-277M training → weights published open-source on HuggingFace → ZARX inference runtime released.</div>
+            </div>
+            <div style="padding:20px;background:rgba(255,209,102,0.05);border:1px solid rgba(255,209,102,0.15);border-radius:var(--radius);">
+              <div style="font-family:var(--mono);font-size:0.7rem;color:var(--accent-4);letter-spacing:0.1em;margin-bottom:8px;">GUARANTEE</div>
+              <div style="font-size:0.88rem;color:var(--fg-muted);line-height:1.7;">No equity taken. No VC strings. Every dollar tracked publicly. If the training run fails, the architecture report is published anyway so the community can reproduce it.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       COMPANY STAGE
+  ══════════════════════════════════════════════ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label reveal">Company Snapshot</div>
+      <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom:48px;">Where we actually are.</h2>
+      <div class="grid-3">
+        <div class="card reveal" data-tilt>
+          <div class="badge badge-ok" style="margin-bottom:14px;">Done</div>
+          <h3 style="margin-bottom:10px;">Architecture</h3>
+          <p style="color:var(--fg-muted);font-size:0.88rem;line-height:1.7;">ZARX core (HASS, ASR, L-CoT, MoE) verified. AXONIX-ZERO agent framework built. Web dashboard live. Both systems deployed locally.</p>
+        </div>
+        <div class="card reveal reveal-delay-1" data-tilt style="border-color:rgba(124,92,252,0.2);">
+          <div class="badge badge-accent badge-dot" style="margin-bottom:14px;">In progress</div>
+          <h3 style="margin-bottom:10px;">Large-scale training</h3>
+          <p style="color:var(--fg-muted);font-size:0.88rem;line-height:1.7;">ZARX-277M needs GPU time for WikiText/OWT training. AXONIX-ZERO debugging toward 100% stability. Community fundraiser active.</p>
+        </div>
+        <div class="card reveal reveal-delay-2" data-tilt>
+          <div class="badge badge-dim" style="margin-bottom:14px;">Next</div>
+          <h3 style="margin-bottom:10px;">Seed round &amp; team</h3>
+          <p style="color:var(--fg-muted);font-size:0.88rem;line-height:1.7;">After weights are published and AXONIX reaches stable v1.0, raise a small seed round to hire a research lead and co-founder. Timeline: 6–9 months post-training.</p>
+        </div>
+      </div>
+      <div style="margin-top:24px;text-align:center;" class="reveal">
+        <a class="btn btn-ghost" href="stage.html">Full company stage breakdown →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       FINAL CTA
+  ══════════════════════════════════════════════ -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="card reveal" style="text-align:center;padding:clamp(48px,7vw,80px);">
+        <div class="badge badge-accent badge-dot" style="margin:0 auto 24px;">Beta · Active debugging</div>
+        <h2 style="margin-bottom:18px;font-size:clamp(1.6rem,2.8vw,2.6rem);" data-type-header>Engineering transparency is non-negotiable.</h2>
+        <p style="color:var(--fg-muted);max-width:540px;margin:0 auto 32px;font-size:1rem;line-height:1.8;">
+          We are candid about active beta work because reliability is foundational. Request a demo to see the real build — warts, active fixes, and the full roadmap to production-grade stability.
+        </p>
+        <div class="btn-row" style="justify-content:center;gap:16px;">
+          <a class="btn btn-primary btn-lg" href="contact.html#demo">Request demo video</a>
+          <a class="btn btn-ghost btn-lg" href="product.html">Explore the platform</a>
+          <a class="btn btn-ghost" href="about.html">About FRAZIYM</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo" style="margin-bottom:14px;"><span class="logo-icon"></span>FRAZIYM TECH &amp; AI</div>
+        <p>Local-first autonomous AI engineering. Built from scratch in Dhaka, Bangladesh by a 19-year-old who decided the transformer math needed fixing.</p>
+        <div class="footer-status"><span class="status-dot"></span>All systems operational</div>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="zarx.html">ZARX Framework</a>
+        <a href="product.html">AXONIX-ZERO</a>
+        <a href="product.html#backends">Backends</a>
+        <a href="product.html#tools">Tool Layer</a>
+        <a href="pricing.html">Pricing</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About</a>
+        <a href="founder.html">Akik — Founder &amp; CTO</a>
+        <a href="sakibul.html">Sakibul — CEO</a>
+        <a href="yasir.html">Yasir — CCO</a>
+        <a href="team.html">Team</a>
+        <a href="stage.html">Stage</a>
+        <a href="projects.html">Projects</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="fundraiser.html" style="color:var(--accent-4);">⭐ Support ZARX</a>
+        <a href="contact.html#demo">Request demo</a>
+        <a href="mailto:akikfaraji@gmail.com">akikfaraji@gmail.com</a>
+        <a href="https://github.com/Akik-Forazi" target="_blank" rel="noopener">GitHub</a>
+        <a href="team.html#join">Join the team</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 FRAZIYM TECH &amp; AI · All rights reserved · Akik Faraji · Dhaka, Bangladesh</span>
+      <span class="mono" style="font-size:0.74rem;">v3.0.0-beta · ZARX v0.2.4 · AXONIX v1.0-beta-A2</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+(function() {
+  const TARGET = new Date('2027-01-01T00:00:00').getTime();
+
+  const $ = id => document.getElementById(id);
+  const pad = (n,l) => String(n).padStart(l,'0');
+
+  const els = {
+    d:  $('fz-cd-days'),   h:  $('fz-cd-hours'),
+    m:  $('fz-cd-mins'),   s:  $('fz-cd-secs'),
+    ms: $('fz-cd-ms'),     flash: $('fz-cd-glitch-flash'),
+    flashWord: $('fz-flash-word'), uptime: $('fz-cd-uptime'),
+    mem: $('fz-cd-mem'),   stream: $('fz-cd-code-stream'),
+  };
+
+  /* ── GLITCH ── */
+  const glitchNum = el => {
+    if (!el) return;
+    const orig = el.textContent;
+    el.classList.add('fz-glitch-num');
+    let f = 0;
+    const iv = setInterval(() => {
+      el.textContent = orig.split('').map(c => /\d/.test(c) ? Math.floor(Math.random()*10) : c).join('');
+      if (++f > 3) { clearInterval(iv); el.classList.remove('fz-glitch-num'); el.textContent = orig; }
+    }, 35);
+  };
+
+  /* ── FLASH ── */
+  const FLASH_WORDS = ['LAUNCH.EXE','AXONIX-ZERO','ZARX-ZERO','FRAZIYM','01/01/2027','OVERRIDE','INITIATING','DEPLOY','v1.0.0','RELEASE'];
+  const triggerFlash = () => {
+    if (!els.flash) return;
+    els.flashWord.textContent = FLASH_WORDS[Math.floor(Math.random()*FLASH_WORDS.length)];
+    els.flash.style.transition = 'none';
+    els.flash.style.opacity = '1';
+    setTimeout(() => { els.flash.style.transition = 'opacity 0.2s'; els.flash.style.opacity = '0'; }, 70 + Math.random()*80);
+  };
+  setTimeout(triggerFlash, 900);
+  setTimeout(triggerFlash, 1050);
+
+  /* ── UPTIME COUNTER ── */
+  const startTime = Date.now();
+  const updateUptime = () => {
+    const d = Date.now() - startTime;
+    const h = pad(Math.floor(d/3600000),2);
+    const m = pad(Math.floor((d%3600000)/60000),2);
+    const s = pad(Math.floor((d%60000)/1000),2);
+    if (els.uptime) els.uptime.textContent = `${h}:${m}:${s}`;
+    if (els.mem) els.mem.textContent = `MEM: ${(20 + Math.sin(d/4000)*8 + Math.random()*2).toFixed(1)}%`;
+  };
+
+  /* ── HACKER CODE STREAM ── */
+  const CODE_LINES = [
+    ['c-purple', 'import zarx from "./zarx-zero/model.pt"'],
+    ['c-blue',   'axonix.init({ backend: "zarx-zero", local: true })'],
+    ['c-green',  '✓ ZARX router loaded — 277M params / 26M active'],
+    ['c-dim',    '> scanning workspace: /projects/axonix-v1 ...'],
+    ['c-purple', 'class SparseRouter(nn.Module):'],
+    ['c-blue',   '  def forward(self, x): return self.route(x)'],
+    ['c-warn',   '⚠ token budget exceeded — activating deep path'],
+    ['c-green',  '✓ HASS block output verified — loss: 0.0024'],
+    ['c-dim',    'git commit -m "feat: zarx-zero phase3 training pass"'],
+    ['c-purple', 'zarx.train(data="openwebtext", steps=50000)'],
+    ['c-blue',   'epoch [1/8] loss=2.341 ppl=10.39 lr=3e-4'],
+    ['c-green',  '✓ checkpoint saved → ./ckpt/zarx-zero-277M-e1.pt'],
+    ['c-dim',    'ps aux | grep axonix | awk \'{print $2}\''],
+    ['c-red',    '✗ memory pressure — GC triggered (freed 2.1GB)'],
+    ['c-purple', 'sparse_mask = router.compute_mask(tokens)'],
+    ['c-blue',   'active_params = model.count_active(sparse_mask)'],
+    ['c-green',  '✓ active: 26.1M / 277M (9.4%) — target met'],
+    ['c-warn',   '⚠ ETA to release: countdown active'],
+    ['c-dim',    'curl -X POST localhost:8080/api/agent/run'],
+    ['c-purple', 'loop.plan("refactor zarx attention kernel")'],
+    ['c-blue',   '  → tool: write_file("attn.py", patch)'],
+    ['c-green',  '✓ loop converged in 4 iterations'],
+    ['c-dim',    'python -m zarx.eval --bench wikitext103'],
+    ['c-purple', 'if token.complexity > threshold: deep_route(token)'],
+    ['c-green',  '✓ perplexity: 18.4 — baseline dense: 19.1'],
+    ['c-dim',    'tar -czf axonix-v1.0-release.tar.gz ./dist/'],
+    ['c-blue',   'docker build -t fraziym/axonix:1.0 .'],
+    ['c-green',  '✓ build complete — image: 1.2GB'],
+    ['c-warn',   '⚠ launch window: 306 days remaining'],
+    ['c-purple', 'zarx.quantize(method="SPPQ", bits=4)'],
+    ['c-green',  '✓ quantized model: 277M → 620MB on disk'],
+    ['c-dim',    'huggingface-cli upload fraziym/zarx-zero ./'],
+    ['c-blue',   'axonix.stream(goal="write release notes")'],
+    ['c-purple', 'def route_token(t): return experts[router(t)]'],
+  ];
+
+  let lineIdx = 0;
+  const MAX_LINES = 18;
+  const pushCodeLine = () => {
+    if (!els.stream) return;
+    const [cls, text] = CODE_LINES[lineIdx++ % CODE_LINES.length];
+    const el = document.createElement('div');
+    el.className = `fz-code-line ${cls}`;
+    el.textContent = text;
+    els.stream.appendChild(el);
+    // trim to max lines
+    while (els.stream.children.length > MAX_LINES) els.stream.removeChild(els.stream.firstChild);
+  };
+  // seed initial lines
+  for (let i = 0; i < 10; i++) pushCodeLine();
+  setInterval(pushCodeLine, 600 + Math.random()*400);
+
+  /* ── MAIN CLOCK ── */
+  let lastSec = -1;
+  const update = () => {
+    const diff = TARGET - Date.now();
+    updateUptime();
+    if (diff <= 0) {
+      ['d','h','m','s'].forEach(k => { if(els[k]) els[k].textContent = k==='d'?'000':'00'; });
+      if (els.ms) els.ms.textContent = '000';
+      return;
+    }
+    const d  = pad(Math.floor(diff/86400000),3);
+    const h  = pad(Math.floor((diff%86400000)/3600000),2);
+    const m  = pad(Math.floor((diff%3600000)/60000),2);
+    const s  = pad(Math.floor((diff%60000)/1000),2);
+    const ms = pad(diff%1000,3);
+
+    if (els.d) els.d.textContent = d;
+    if (els.h) els.h.textContent = h;
+    if (els.m) els.m.textContent = m;
+    if (els.ms) els.ms.textContent = ms;
+
+    if (s !== lastSec) {
+      lastSec = s;
+      if (els.s) els.s.textContent = s;
+      glitchNum(els.s);
+      if (Math.random() < 0.15) glitchNum(els.m);
+      if (Math.random() < 0.05) glitchNum(els.h);
+      if (Math.random() < 0.02) glitchNum(els.d);
+      if (Math.random() < 0.04) triggerFlash();
+    }
+  };
+  update();
+  setInterval(update, 30); // 30ms for smooth ms
+})();
+</script>
+</body>
+</html>
