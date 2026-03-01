@@ -663,8 +663,8 @@
     }
   }
 
-  async function renderTermLine(lineEl, segs, isCmd, cursor) {
-    lineEl.innerHTML = '';
+  async function renderTermLine(lineEl, segs, isCmd, cursor, body) {
+    // Move cursor into this line so it appears at end of typed text
     lineEl.appendChild(cursor);
     for (const seg of segs) {
       let container = null;
@@ -690,6 +690,8 @@
         for (const ch of seg.text) { appendChar(ch); await sleep(TERM_SPEED.out()); }
       }
     }
+    // Always pull cursor back to body so next insertBefore(lineEl, cursor) works
+    body.appendChild(cursor);
   }
 
   const BOOT_LINES = [
@@ -706,13 +708,20 @@
       await sleep(row.d);
       const el = document.createElement('span');
       el.className = 'fz-line fz-dim';
-      body.insertBefore(el, cursor);
+      // Insert before cursor so cursor stays at end
+      if (cursor.parentNode === body) {
+        body.insertBefore(el, cursor);
+      } else {
+        body.appendChild(el);
+      }
       for (const ch of row.t) { el.textContent += ch; await sleep(rand(3, 12)); }
     }
     await sleep(220);
     qsa('.fz-line.fz-dim', body).forEach(el => { el.style.transition = 'opacity 0.2s'; el.style.opacity = '0'; });
     await sleep(250);
     qsa('.fz-line.fz-dim', body).forEach(el => el.remove());
+    // Ensure cursor is back in body after boot wipe
+    if (!body.contains(cursor)) body.appendChild(cursor);
     await sleep(100);
   }
 
@@ -737,8 +746,10 @@
     body.appendChild(cursor);
 
     const doRun = async () => {
+      // Wipe previous run's lines, keep scan overlay
       qsa('.fz-line', body).forEach(l => l.remove());
-      body.appendChild(cursor);
+      // Ensure cursor is in body at start position
+      if (!body.contains(cursor)) body.appendChild(cursor);
       if (!fast) await runBoot(body, cursor);
 
       for (const step of script) {
@@ -753,7 +764,7 @@
         const lineEl = document.createElement('span');
         lineEl.className = `fz-line ${step.baseClass}`;
         body.insertBefore(lineEl, cursor);
-        await renderTermLine(lineEl, step.segs, step.isCommand && !fast, cursor);
+        await renderTermLine(lineEl, step.segs, step.isCommand && !fast, cursor, body);
         await sleep(step.isCommand ? rand(100, 220) : rand(25, 70));
       }
 

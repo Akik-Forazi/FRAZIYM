@@ -1,5 +1,5 @@
-<div align="center">
-<img width="1200" height="475" alt="FRAZIYM TECH & AI" src="" />
+<div align="left">
+<img width="120" height="47" alt="FRAZIYM TECH & AI" src="logo-mark.svg" />
 </div>
 
 # FRAZIYM TECH & AI — Official Website
