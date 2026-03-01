@@ -20,6 +20,7 @@
   --gutter:clamp(16px,3vw,40px); --nav-h:68px;
   --ease:cubic-bezier(0.16,1,0.3,1); --ease-in:cubic-bezier(0.4,0,1,1); --ease-out:cubic-bezier(0,0,0.2,1);
   --t:0.2s; --t-slow:0.5s;
+  --max: 100%;
   --shadow-hover:0 8px 48px rgba(124,92,252,0.13),0 0 0 1px rgba(124,92,252,0.18);
 }
 
@@ -443,4 +444,37 @@ body::after{
   .grid-4{grid-template-columns:1fr}
   .stat{padding:18px 12px}
   .badge{font-size:0.64rem}
+  h1{font-size:clamp(1.85rem,9vw,2.6rem)}
+  h2{font-size:clamp(1.4rem,8vw,2rem)}
+}
+
+/* ── Very large displays (1600px+) ─────────────────────────── */
+@media(min-width:1600px){
+  :root{--gutter:clamp(40px,4vw,80px)}
+  .container{max-width:1320px}
+}
+
+/* ── Portrait tablet (600-860px, tall) ─────────────────────── */
+@media(max-width:860px) and (min-width:601px){
+  .pricing-grid{grid-template-columns:1fr 1fr}
+}
+
+/* ── Ultra-short screens (landscape mobile) ─────────────────── */
+@media(max-height:480px){
+  .page-hero{padding-top:calc(var(--nav-h) + 24px);padding-bottom:24px}
+  .section{padding:32px 0}
+  .section-sm{padding:20px 0}
+}
+
+/* ── Prevent horizontal overflow globally ───────────────────── */
+body{overflow-x:hidden}
+img,video,iframe,object,embed,table{max-width:100%}
+.terminal-body{overflow-x:auto}
+pre,code{word-break:break-all;overflow-wrap:break-word}
+
+/* ── Safe-area padding for notched phones ───────────────────── */
+@supports(padding:max(0px)){
+  .header{padding-left:max(0px,env(safe-area-inset-left));padding-right:max(0px,env(safe-area-inset-right))}
+  .footer{padding-left:max(0px,env(safe-area-inset-left));padding-right:max(0px,env(safe-area-inset-right))}
+  #fz-wrap{padding-bottom:max(24px,env(safe-area-inset-bottom))}
 }
