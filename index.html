@@ -135,7 +135,7 @@
     /* ── MAIN BODY: left panel + right code panel ── */
     #term-body {
       flex: 1; display: grid;
-      grid-template-columns: 40% 60%;
+      grid-template-columns: 72% 28%;
       overflow: hidden;
       min-height: 0;
     }
@@ -352,9 +352,11 @@
       flex-shrink: 0;
     }
     #cp-stream {
-      flex: 1; overflow: hidden; padding: 10px 14px;
-      display: flex; flex-direction: column; gap: 2px;
-      mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+      flex: 1; overflow: hidden; padding: 0 14px 10px;
+      display: flex; flex-direction: column-reverse; gap: 2px;
+      justify-content: flex-start;
+      mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 100%);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 100%);
     }
     .cp-line {
       font-size: clamp(0.58rem, 0.92vw, 0.68rem); line-height: 1.72;
@@ -858,11 +860,11 @@
     const el = document.createElement('div');
     el.className = 'cp-line ' + cls;
     el.textContent = txt === '' ? '\u00a0' : txt;  // blank lines as nbsp
-    stream.appendChild(el);
-    while (stream.children.length > 28) stream.removeChild(stream.firstChild);
+    stream.insertBefore(el, stream.firstChild);
+    while (stream.children.length > 60) stream.removeChild(stream.lastChild);
     if (cpMem) cpMem.textContent = 'MEM: ' + (20 + Math.sin(Date.now()/4000)*8 + Math.random()*2).toFixed(1) + '%';
   };
-  for (let i = 0; i < 18; i++) pushLine();
+  for (let i = 0; i < 60; i++) pushLine();
   // push a new line every ~220ms — fast but readable
   setInterval(pushLine, 120);
 
