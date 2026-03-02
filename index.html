@@ -135,11 +135,11 @@
     /* ── MAIN BODY: left panel + right code panel ── */
     #term-body {
       flex: 1; display: grid;
-      grid-template-columns: 1fr clamp(400px, 38vw, 510px);
+      grid-template-columns: 40% 60%;
       overflow: hidden;
       min-height: 0;
     }
-    @media(max-width:680px) {
+    @media(max-width:768px) {
       #term-body { grid-template-columns: 1fr; }
       #code-panel { display: none; }
     }
@@ -469,7 +469,7 @@
     <div class="tb-right">
       <div class="tb-live"><span class="live-dot"></span><span id="tb-clock">00:00:00</span></div>
       <span>|</span>
-      <span>BDT</span>
+      <span>BST</span>
       <span>|</span>
       <span id="tb-uptime">UP: 00:00:00</span>
     </div>
@@ -522,7 +522,7 @@
         <span class="tr-dot"></span>
         <span>Target release · AXONIX-ZERO v1.0 + ZARX-ZERO</span>
         <span>·</span>
-        <span>Jan 01, 2027 · 00:00:00 BDT</span>
+        <span>Jan 01, 2027 · 00:00:00 BST</span>
         <span class="tr-dot"></span>
       </div>
 
@@ -864,7 +864,7 @@
   };
   for (let i = 0; i < 18; i++) pushLine();
   // push a new line every ~220ms — fast but readable
-  setInterval(pushLine, 220);
+  setInterval(pushLine, 120);
 
   /* ── CLOCK & UPTIME ── */
   const pad = (n,l) => String(Math.floor(n)).padStart(l,'0');
