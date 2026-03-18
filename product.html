@@ -46,6 +46,7 @@
             <a href="projects.html#axonix"><span class="dot"></span>AXONIX-ZERO</a>
             <a href="projects.html#models"><span class="dot"></span>Models</a>
             <a href="projects.html#agentic"><span class="dot"></span>Agentic Services</a>
+            <a href="omnikarai.html"><span class="dot dot-cyan"></span>Omnikarai Compiler</a>
           </div>
         </div>
         <div class="dropdown">
@@ -88,7 +89,7 @@
     <section class="section">
       <div class="container">
         <div class="section-label reveal">Architecture</div>
-        <h2 class="reveal reveal-delay-1" data-glitch style="margin-bottom: 16px;">Built to run <span class="display">everything</span></h2>
+        <h2 class="reveal reveal-delay-1" data-type-header data-glitch style="margin-bottom: 16px;">Built to run <span class="display">everything</span></h2>
         <p class="reveal reveal-delay-2" style="color: var(--fg-muted); max-width: 540px; margin-bottom: 40px;">A layered system: unified backend abstraction → typed tool layer → loop engine → streaming UI. Each layer is independently testable and swappable.</p>
         <div class="card reveal" style="padding: 32px;">
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1px; background: var(--line);">
@@ -121,7 +122,7 @@
     <section id="backends" class="section">
       <div class="container">
         <div class="section-label reveal">Inference Backends</div>
-        <h2 class="reveal reveal-delay-1" style="margin-bottom: 40px;">Your model, your rules</h2>
+        <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom: 40px;">Your model, your rules</h2>
         <div class="grid-3">
           <div class="card-feature reveal"><div class="icon">🦙</div><h3>Ollama</h3><p>Local server with native tool calling. Default backend. Supports all Ollama-registered models including Gemma 3, Llama 3.2, Qwen 2.5, Phi-3.5, and more.</p></div>
           <div class="card-feature reveal reveal-delay-1"><div class="icon">🤖</div><h3>OpenAI-Compatible</h3><p>Covers OpenAI, LM Studio, Groq, Together AI, Mistral, DeepInfra, vLLM — any server exposing the <code style="font-family:var(--mono);font-size:0.85em;">/v1/chat/completions</code> API.</p></div>
@@ -137,7 +138,7 @@
     <section id="tools" class="section">
       <div class="container">
         <div class="section-label reveal">Tool Layer</div>
-        <h2 class="reveal reveal-delay-1" style="margin-bottom: 16px;">20+ tools, ready to use</h2>
+        <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom: 16px;">20+ tools, ready to use</h2>
         <p class="reveal reveal-delay-2" style="color: var(--fg-muted); max-width: 500px; margin-bottom: 40px;">All tools use OpenAI function-calling schema and are automatically injected into the system prompt for fallback backends.</p>
         <div class="grid-4">
           <div class="card reveal" style="padding: 18px;">
@@ -189,7 +190,7 @@
     <section id="web" class="section">
       <div class="container">
         <div class="section-label reveal">Web Dashboard</div>
-        <h2 class="reveal reveal-delay-1" style="margin-bottom: 40px;">IDE-like experience, no install</h2>
+        <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom: 40px;">IDE-like experience, no install</h2>
         <div class="grid-2">
           <div class="reveal" style="display: grid; gap: 16px; align-content: start;">
             <div class="card-feature"><div class="icon">📡</div><h3>Real-time streaming</h3><p>SSE-based token streaming shows the agent's thought process token-by-token. Watch tools execute and results arrive live.</p></div>
@@ -228,7 +229,7 @@
       <div class="container">
         <div class="section-label reveal">Research Framework</div>
         <div class="badge badge-dim" style="margin-bottom: 16px; display: inline-flex;">v0.2.4 Technical Report</div>
-        <h2 class="reveal reveal-delay-1" style="margin-bottom: 16px;">XORZEN — Sparse Adaptive <span class="display">Intelligence</span></h2>
+        <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom: 16px;">XORZEN — Sparse Adaptive <span class="display">Intelligence</span></h2>
         <p class="reveal reveal-delay-2" style="color: var(--fg-muted); max-width: 700px; margin-bottom: 40px; font-size: 1.05rem;">A paradigm shift in LLM architecture achieving state-of-the-art cognitive performance at a fraction of traditional costs. Developed by FRAZIYM AI.</p>
 
         <div class="card reveal" style="margin-bottom: 32px;">
@@ -282,7 +283,7 @@
     <section class="section">
       <div class="container">
         <div class="section-label reveal">Execution Modes</div>
-        <h2 class="reveal reveal-delay-1" style="margin-bottom: 40px;">Three ways to run</h2>
+        <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom: 40px;">Three ways to run</h2>
         <div class="grid-3">
           <div class="card reveal" style="border-color: rgba(77,240,200,0.2);">
             <div style="font-family: var(--mono); color: var(--accent); font-size: 0.85rem; margin-bottom: 12px;">axonix --lc</div>
@@ -306,7 +307,7 @@
     <section class="section-sm">
       <div class="container">
         <div class="card reveal" style="text-align: center; padding: clamp(36px, 5vw, 60px);">
-          <h2 style="margin-bottom: 16px;">Ready to run it?</h2>
+          <h2 data-type-header style="margin-bottom: 16px;">Ready to run it?</h2>
           <p style="color: var(--fg-muted); max-width: 460px; margin: 0 auto 28px;">Request a demo video to see AXONIX-ZERO in action, or reach out for private deployment guidance.</p>
           <div class="btn-row" style="justify-content: center;">
             <a class="btn btn-primary" href="contact.html#demo">Request demo video</a>
@@ -322,7 +323,7 @@
     <div class="footer-col"><h4>Product</h4><a href="xorzen.html">XORZEN Framework</a><a href="product.html">AXONIX-ZERO</a><a href="product.html#backends">Backends</a><a href="product.html#tools">Tool Layer</a><a href="pricing.html">Pricing</a></div>
     <div class="footer-col"><h4>Company</h4><a href="about.html">About</a><a href="founder.html">Akik — Founder &amp; CTO</a><a href="sakibul.html">Sakibul — CEO</a><a href="yasir.html">Yasir — CCO</a><a href="team.html">Team</a><a href="stage.html">Stage</a><a href="projects.html">Projects</a></div>
     <div class="footer-col"><h4>Connect</h4><a href="fundraiser.html" style="color:var(--accent-4);">⭐ Support XORZEN</a><a href="contact.html#demo">Request demo</a><a href="mailto:akikfaraji@gmail.com">akikfaraji@gmail.com</a><a href="https://github.com/Akik-Forazi" target="_blank" rel="noopener">GitHub</a><a href="team.html#join">Join the team</a></div>
-  </div><div class="footer-bottom"><span>© 2026 FRAZIYM TECH &amp; AI · All rights reserved · Akik Faraji · Dhaka, Bangladesh</span><span class="mono" style="font-size:0.74rem;">v3.0.0-beta · XORZENX v0.2.4 · AXONIX v1.0-beta-A2</span></div></div></footer>
+  </div><div class="footer-bottom"><span>© 2026 FRAZIYM TECH &amp; AI · All rights reserved · Akik Faraji · Dhaka, Bangladesh</span><span class="mono" style="font-size:0.74rem;">v3.0.0-beta · XORZEN v0.2.4 · Omnikarai v6.0</span></div></div></footer>
   <script src="script.js"></script>
 </body>
 </html>

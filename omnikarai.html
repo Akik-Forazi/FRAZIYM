@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Omnikarai v6.0 — Native x86-64 Compiler by FRAZIYM TECH & AI</title>
+  <meta name="description" content="Omnikarai v6.0 is a hand-written programming language and native Windows x64 compiler built from scratch in C by Akik Faraji. No LLVM, no GCC backend. 20/20 benchmark tests passing. Fib(40) within 3.72x of GCC -O3, Primes within 3.15x. Full Pratt parser, INDENT/DEDENT lexer, and direct x86-64 machine code emission." />
+  <meta name="keywords" content="Omnikarai, native compiler, x86-64 codegen, programming language, Akik Faraji, FRAZIYM, hand-written compiler, Pratt parser, Windows compiler, systems programming, Bangladesh"/>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "FRAZIYM TECH & AI",
+  "alternateName": "FRAZIYM",
+  "url": "https://fraziym.vercel.app/",
+  "logo": "https://fraziym.vercel.app/logo-wordmark.svg",
+  "description": "The next big thing in AI and rigorous engineering. Premium tech leadership and local-first AI solutions.",
+  "founder": { "@type": "Person", "name": "Akik Faraji", "url": "https://akikfaraji.com" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressCountry": "BD" }
+}
+</script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-canvas"></div><div class="bg-grid"></div><div class="bg-beam"></div>
+  <header class="header"><div class="container nav">
+    <a class="logo" href="home.html"><span class="logo-icon"></span>FRAZIYM TECH &amp; AI</a>
+    <button class="mobile-toggle" aria-label="Toggle navigation" aria-expanded="false"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path stroke="currentColor" stroke-width="1.5" d="M2 4h12M2 8h12M2 12h12"/></svg>Menu</button>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="home.html">Home</a><a href="product.html">Product</a>
+      <div class="dropdown"><a href="projects.html" aria-haspopup="true" class="active">Projects &#9662;</a>
+        <div class="dropdown-menu">
+          <a href="xorzen.html"><span class="dot dot-amber"></span>XORZEN Framework</a>
+          <a href="projects.html#axonix"><span class="dot"></span>AXONIX-ZERO</a>
+          <a href="omnikarai.html"><span class="dot dot-cyan"></span>Omnikarai Compiler</a>
+          <a href="projects.html#models"><span class="dot"></span>Models</a>
+          <a href="projects.html#agentic"><span class="dot"></span>Agentic Services</a>
+        </div>
+      </div>
+      <div class="dropdown"><a href="team.html" aria-haspopup="true">Team &#9662;</a>
+        <div class="dropdown-menu">
+          <a href="founder.html"><span class="dot"></span>Akik Faraji — Founder &amp; CTO</a>
+          <a href="sakibul.html"><span class="dot"></span>Sakibul Hassan — CEO</a>
+          <a href="yasir.html"><span class="dot"></span>Yasir Arafat — CCO</a>
+          <a href="team.html"><span class="dot"></span>Full Team</a>
+          <a href="team.html#join"><span class="dot"></span>Join FRAZIYM</a>
+        </div>
+      </div>
+      <a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="stage.html">Stage</a><a href="contact.html">Contact</a>
+      <a href="fundraiser.html" style="color:var(--accent-4);">Support XORZEN</a>
+      <a class="nav-cta" href="contact.html#demo">Request demo</a>
+    </nav>
+  </div></header>
+
+  <main>
+    <!-- HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="badge badge-cyan badge-dot reveal" style="margin-bottom: 24px;">Language &amp; Compiler · v6.0 · Active</div>
+        <h1 class="reveal reveal-delay-1" data-typewriter data-tw-delay="250" data-glitch style="margin-bottom: 20px;">Omnikarai</h1>
+        <p class="reveal reveal-delay-2" style="color: var(--fg-muted); font-size: clamp(1rem, 1.3vw, 1.15rem); max-width: 620px; margin: 0 0 12px;">
+          A hand-written programming language with a compiler that emits native Windows x64 machine code directly — no LLVM, no GCC backend, no intermediate representation. Every byte of the output binary is authored by the compiler.
+        </p>
+        <p class="reveal reveal-delay-2" style="color: var(--fg-dim); font-size: 0.9rem; max-width: 560px; margin: 0 0 32px;">
+          Built in C from scratch. Full Pratt parser. INDENT/DEDENT lexer. Direct x86-64 codegen. v6.0 ships with 20/20 benchmark tests passing — Fib(40) at 3.72x of GCC -O3, Primes at 3.15x of GCC -O3.
+        </p>
+        <div class="btn-row reveal reveal-delay-3">
+          <a class="btn btn-primary" href="https://github.com/Akik-Forazi" target="_blank" rel="noopener">GitHub &rarr;</a>
+          <a class="btn btn-ghost" href="projects.html#omnikarai">Back to Projects</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY IT MATTERS -->
+    <section class="section">
+      <div class="container">
+        <div class="section-label reveal">The Project</div>
+        <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom: 16px;">A compiler built the hard way</h2>
+        <p class="reveal reveal-delay-2" style="color: var(--fg-muted); max-width: 680px; margin-bottom: 48px;">
+          Most compilers stand on giants — LLVM handles register allocation, GCC handles instruction selection, and the language author handles syntax. Omnikarai removes every layer of that abstraction. The lexer, parser, semantic analysis, code generator, and binary emitter are all written by hand in C. The output is a raw Windows PE executable containing x86-64 machine code.
+        </p>
+        <div class="grid-3 reveal reveal-delay-2">
+          <div class="card card-feature">
+            <div class="badge badge-dim" style="margin-bottom: 12px;">No Backend</div>
+            <h3 style="font-size: 1rem; margin-bottom: 8px;">Zero Dependencies</h3>
+            <p style="color: var(--fg-muted); font-size: 0.875rem; line-height: 1.6;">No LLVM. No GCC. No libgcc. The compiler links only against kernel32.dll — Windows' lowest-level system library. Every instruction in the output binary was decided by the codegen module.</p>
+          </div>
+          <div class="card card-feature" style="border-color: rgba(77,240,200,0.2);">
+            <div class="badge badge-accent" style="margin-bottom: 12px;">Native Speed</div>
+            <h3 style="font-size: 1rem; margin-bottom: 8px;">Within 3–4x of GCC -O3</h3>
+            <p style="color: var(--fg-muted); font-size: 0.875rem; line-height: 1.6;">In the v6.0 benchmark suite, Omnikarai runs Fib(40) at 6683 ms vs C -O3's 1797 ms (3.72x ratio) and Primes at 1246 ms vs C's 396 ms (3.15x). Dotprod and Matmul are next targets for the register allocator phase.</p>
+          </div>
+          <div class="card card-feature" style="border-color: rgba(107,123,255,0.2);">
+            <div class="badge badge-cyan" style="margin-bottom: 12px;">Python-like Syntax</div>
+            <h3 style="font-size: 1rem; margin-bottom: 8px;">Familiar by Design</h3>
+            <p style="color: var(--fg-muted); font-size: 0.875rem; line-height: 1.6;">Omnikarai uses significant whitespace, colon-terminated blocks, and a clean keyword set. It feels like Python — but compiles to a native binary that needs no runtime, no interpreter, and no VM.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENCHMARK -->
+    <section class="section" style="background: rgba(255,255,255,0.01);">
+      <div class="container">
+        <div class="section-label reveal">Benchmark Results</div>
+        <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom: 16px;">Omnikarai v6.0 — Full Suite vs C -O3</h2>
+        <p class="reveal reveal-delay-2" style="color: var(--fg-muted); max-width: 620px; margin-bottom: 40px;">
+          Five workloads benchmarked against GCC -O3. 20/20 tests passing. Run on Windows x64. Wall-clock milliseconds; correct output verified for every run.
+        </p>
+        <div class="reveal reveal-delay-2">
+          <div class="terminal">
+            <div class="terminal-bar"><span></span><span></span><span></span><span style="margin-left: auto; font-size: 0.7rem; opacity:0.4;">run_benchmarks.ps1 — omnikarai v6.0</span></div>
+            <div class="terminal-body">
+              <div class="t-ok">BUILD OK</div>
+              <div class="t-dim">Rebuilding C benchmarks (-O3 -march=native)...</div>
+              <div class="t-ok">Tests:  20/20 PASS</div>
+              <br/>
+              <div class="t-dim">==========================================</div>
+              <div class="t-cmd">  OMNIKARAI v6.0 -- BENCHMARKS vs C -O3</div>
+              <div class="t-dim">==========================================</div>
+              <div class="t-dim">  --- Loop  100M ---</div>
+              <div><span class="t-cmd">    Omnikarai  5000000050000000</span><span class="t-dim">           298ms</span></div>
+              <div><span class="t-cmd">    C (-O3)    5000000050000000</span><span class="t-dim">         0.000ms   ratio Omni/C=?</span></div>
+              <div class="t-dim">  --- Fib(40) x5 ---</div>
+              <div><span class="t-cmd">    Omnikarai  102334155</span><span class="t-dim">                 6683ms</span></div>
+              <div><span class="t-cmd">    C (-O3)    102334155</span><span class="t-dim">              1796.920ms</span><span class="t-ok">   ratio Omni/C=3.72</span></div>
+              <div class="t-dim">  --- Primes x30 ---</div>
+              <div><span class="t-cmd">    Omnikarai  9592</span><span class="t-dim">                      1246ms</span></div>
+              <div><span class="t-cmd">    C (-O3)    9592</span><span class="t-dim">                   395.987ms</span><span class="t-ok">   ratio Omni/C=3.15</span></div>
+              <div class="t-dim">  --- Dotprod x10k ---</div>
+              <div><span class="t-cmd">    Omnikarai  178956800</span><span class="t-dim">                   53ms</span></div>
+              <div><span class="t-cmd">    C (-O3)    178956800</span><span class="t-dim">                0.000ms   ratio Omni/C=?</span></div>
+              <div class="t-dim">  --- Matmul x5k ---</div>
+              <div><span class="t-cmd">    Omnikarai  1429430</span><span class="t-dim">                   4111ms</span></div>
+              <div><span class="t-cmd">    C (-O3)    1429430</span><span class="t-dim">                152.806ms</span><span class="t-ok">   ratio Omni/C=26.9</span></div>
+              <br/>
+              <div class="t-dim">==========================================</div>
+              <div class="t-dim">  0/5 benchmarks within 1.5x of C -O3</div>
+              <div class="t-dim">==========================================</div>
+            </div>
+          </div>
+        </div>
+        <div class="grid-4" style="margin-top: 32px; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));">
+          <div class="reveal" style="padding: 20px; background: rgba(77,240,200,0.04); border-radius: 10px; border: 1px solid rgba(77,240,200,0.18); text-align: center;">
+            <div class="mono" style="font-size: 0.72rem; color: var(--accent); margin-bottom: 6px;">FIB(40) ×5</div>
+            <div style="font-size: 1.9rem; font-weight: 700; font-family: var(--mono);">3.72×</div>
+            <div style="font-size: 0.75rem; color: var(--fg-dim); margin-top: 4px;">vs C -O3</div>
+          </div>
+          <div class="reveal reveal-delay-1" style="padding: 20px; background: rgba(77,240,200,0.04); border-radius: 10px; border: 1px solid rgba(77,240,200,0.18); text-align: center;">
+            <div class="mono" style="font-size: 0.72rem; color: var(--accent); margin-bottom: 6px;">PRIMES ×30</div>
+            <div style="font-size: 1.9rem; font-weight: 700; font-family: var(--mono);">3.15×</div>
+            <div style="font-size: 0.75rem; color: var(--fg-dim); margin-top: 4px;">vs C -O3</div>
+          </div>
+          <div class="reveal reveal-delay-2" style="padding: 20px; background: rgba(107,123,255,0.04); border-radius: 10px; border: 1px solid rgba(107,123,255,0.12); text-align: center;">
+            <div class="mono" style="font-size: 0.72rem; color: var(--accent-2); margin-bottom: 6px;">MATMUL ×5K</div>
+            <div style="font-size: 1.9rem; font-weight: 700; font-family: var(--mono);">26.9×</div>
+            <div style="font-size: 0.75rem; color: var(--fg-dim); margin-top: 4px;">vs C -O3 · reg alloc next</div>
+          </div>
+          <div class="reveal reveal-delay-3" style="padding: 20px; background: rgba(77,240,200,0.04); border-radius: 10px; border: 1px solid rgba(77,240,200,0.18); text-align: center;">
+            <div class="mono" style="font-size: 0.72rem; color: var(--accent); margin-bottom: 6px;">TEST SUITE</div>
+            <div style="font-size: 1.9rem; font-weight: 700; font-family: var(--mono);">20/20</div>
+            <div style="font-size: 0.75rem; color: var(--fg-dim); margin-top: 4px;">all tests pass</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LANGUAGE FEATURES -->
+    <section class="section">
+      <div class="container">
+        <div class="section-label reveal">Language Features · v6.0</div>
+        <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom: 16px;">What the language supports today</h2>
+        <p class="reveal reveal-delay-2" style="color: var(--fg-muted); max-width: 620px; margin-bottom: 48px;">
+          Omnikarai v6.0 is a fully functional language covering the core of structured programming. Every feature listed below compiles to native x86-64 code and has been verified through the 20-test benchmark suite.
+        </p>
+        <div class="grid-3 reveal reveal-delay-2">
+          <div class="card card-feature">
+            <div class="icon">&#128296;</div>
+            <h3>Full Pratt Parser</h3>
+            <p style="color: var(--fg-muted); font-size: 0.875rem; line-height: 1.6;">Recursive descent parser with Pratt operator precedence. Handles nested expressions, chained comparisons, logical operators (and, or, not), and the full arithmetic suite including modulo.</p>
+          </div>
+          <div class="card card-feature">
+            <div class="icon">&#128221;</div>
+            <h3>INDENT/DEDENT Lexer</h3>
+            <p style="color: var(--fg-muted); font-size: 0.875rem; line-height: 1.6;">Python-style significant whitespace. The lexer emits synthetic INDENT and DEDENT tokens so the parser never sees raw spaces — enabling clean block-structured grammar without braces.</p>
+          </div>
+          <div class="card card-feature">
+            <div class="icon">&#9881;</div>
+            <h3>Functions &amp; Recursion</h3>
+            <p style="color: var(--fg-muted); font-size: 0.875rem; line-height: 1.6;">User-defined functions with arguments, return values, and full recursion support. Nested function calls, mutual recursion, and deeply nested call stacks — all generating correct stack frames.</p>
+          </div>
+          <div class="card card-feature">
+            <div class="icon">&#128260;</div>
+            <h3>Control Flow</h3>
+            <p style="color: var(--fg-muted); font-size: 0.875rem; line-height: 1.6;">if / elif / else with arbitrary nesting and blank lines between blocks. while loops with break and continue. for i in range(n) iterators. All emit correct x86-64 conditional jump sequences.</p>
+          </div>
+          <div class="card card-feature">
+            <div class="icon">&#127919;</div>
+            <h3>match / case</h3>
+            <p style="color: var(--fg-muted); font-size: 0.875rem; line-height: 1.6;">Structural pattern matching with wildcard _ case. Emits a comparison chain with direct jump dispatch. Cleaner than chained if/elif for switch-style logic.</p>
+          </div>
+          <div class="card card-feature">
+            <div class="icon">&#128218;</div>
+            <h3>Standard Library</h3>
+            <p style="color: var(--fg-muted); font-size: 0.875rem; line-height: 1.6;">Built-in print(), str(), int(), len(), and input() — all implemented as native function calls that interface directly with Win32 console I/O. No libc dependency.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPILER ARCHITECTURE -->
+    <section class="section" style="background: rgba(255,255,255,0.01);">
+      <div class="container">
+        <div class="section-label reveal">Compiler Architecture</div>
+        <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom: 16px;">From source to binary — four stages</h2>
+        <p class="reveal reveal-delay-2" style="color: var(--fg-muted); max-width: 640px; margin-bottom: 48px;">
+          The compiler pipeline is four hand-written C modules with no shared-library or third-party dependencies. Each stage is independently testable and produces a well-defined output that the next stage consumes.
+        </p>
+        <div class="grid-2 reveal reveal-delay-2" style="gap: 40px; align-items: start;">
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div class="card" style="border-left: 3px solid var(--accent);">
+              <div style="font-family: var(--mono); font-size: 0.7rem; color: var(--accent); margin-bottom: 8px; letter-spacing: 0.08em;">STAGE 01 — lexer.c</div>
+              <h3 style="font-size: 0.95rem; margin-bottom: 8px;">Lexer</h3>
+              <p style="color: var(--fg-muted); font-size: 0.85rem; line-height: 1.6;">Converts source text into a flat token stream. Tracks indentation levels to synthesise INDENT and DEDENT tokens. Handles string literals, numeric literals, keywords, operators, and identifiers. Output: <code style="font-family:var(--mono);font-size:0.82em;">Token[]</code></p>
+            </div>
+            <div class="card" style="border-left: 3px solid var(--accent-2);">
+              <div style="font-family: var(--mono); font-size: 0.7rem; color: var(--accent-2); margin-bottom: 8px; letter-spacing: 0.08em;">STAGE 02 — parser.c</div>
+              <h3 style="font-size: 0.95rem; margin-bottom: 8px;">Pratt Parser</h3>
+              <p style="color: var(--fg-muted); font-size: 0.85rem; line-height: 1.6;">Top-down Pratt parser producing an Abstract Syntax Tree. Prefix and infix parse functions registered per token type. Handles operator precedence, block statements, and all compound constructs. Output: <code style="font-family:var(--mono);font-size:0.82em;">AST_Program*</code></p>
+            </div>
+            <div class="card" style="border-left: 3px solid var(--accent-4);">
+              <div style="font-family: var(--mono); font-size: 0.7rem; color: var(--accent-4); margin-bottom: 8px; letter-spacing: 0.08em;">STAGE 03 — codegen.c</div>
+              <h3 style="font-size: 0.95rem; margin-bottom: 8px;">x86-64 Code Generator</h3>
+              <p style="color: var(--fg-muted); font-size: 0.85rem; line-height: 1.6;">Walks the AST and emits raw x86-64 machine code bytes. Manages stack frames, variable offsets via rbp-relative addressing, conditional jumps with backpatching, and function call conventions (System V on Windows). Output: <code style="font-family:var(--mono);font-size:0.82em;">byte[]</code></p>
+            </div>
+            <div class="card" style="border-left: 3px solid var(--accent-3);">
+              <div style="font-family: var(--mono); font-size: 0.7rem; color: var(--accent-3); margin-bottom: 8px; letter-spacing: 0.08em;">STAGE 04 — main.c</div>
+              <h3 style="font-size: 0.95rem; margin-bottom: 8px;">PE Binary Emitter &amp; Runner</h3>
+              <p style="color: var(--fg-muted); font-size: 0.85rem; line-height: 1.6;">Wraps generated machine code in a Windows PE header, allocates executable memory via VirtualAlloc, and either writes a .exe to disk or executes in-process for <code style="font-family:var(--mono);font-size:0.82em;">omnicc run</code> mode. No intermediate object files.</p>
+            </div>
+          </div>
+          <div>
+            <div class="terminal">
+              <div class="terminal-bar"><span></span><span></span><span></span><span style="margin-left: auto; font-size: 0.7rem; opacity:0.4;">compiler pipeline trace</span></div>
+              <div class="terminal-body">
+                <div class="t-dim"># Source file: fib.ok</div>
+                <div class="t-blue">fn fib(n):</div>
+                <div class="t-blue">    if n &lt;= 1:</div>
+                <div class="t-blue">        return n</div>
+                <div class="t-blue">    return fib(n-1) + fib(n-2)</div>
+                <br/>
+                <div class="t-dim"># Stage 1 — Lexer</div>
+                <div><span class="t-prompt">&gt;</span> <span class="t-cmd">omnicc lex fib.ok</span></div>
+                <div class="t-dim">  FN IDENT(fib) LPAREN IDENT(n) RPAREN COLON NL</div>
+                <div class="t-dim">  INDENT IF IDENT(n) LTE INT(1) COLON NL</div>
+                <div class="t-dim">  INDENT RETURN IDENT(n) NL DEDENT DEDENT ...</div>
+                <br/>
+                <div class="t-dim"># Stage 2 — Parser</div>
+                <div><span class="t-prompt">&gt;</span> <span class="t-cmd">omnicc parse fib.ok</span></div>
+                <div class="t-ok">  parsed 4 statement(s) from 'fib.ok'</div>
+                <div class="t-dim">  AST: FnDef(fib) -&gt; IfStmt -&gt; Return</div>
+                <br/>
+                <div class="t-dim"># Stage 3+4 — Codegen + Run</div>
+                <div><span class="t-prompt">&gt;</span> <span class="t-cmd">omnicc run fib.ok</span></div>
+                <div class="t-dim">  [omnicc] parsed 4 statement(s)</div>
+                <div class="t-dim">  [omnicc] running 1240 bytes of machine code...</div>
+                <div class="t-ok">  9227465</div>
+                <div class="t-dim">  [omnicc] run complete, exit_code=0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLI EXAMPLES -->
+    <section class="section">
+      <div class="container">
+        <div class="section-label reveal">CLI Examples</div>
+        <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom: 16px;">omnicc — the compiler CLI</h2>
+        <p class="reveal reveal-delay-2" style="color: var(--fg-muted); max-width: 620px; margin-bottom: 40px;">
+          A single executable handles the full workflow — run a source file directly, compile to a standalone binary, or inspect individual compiler stages. No build system required.
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 28px;" class="reveal reveal-delay-2">
+
+          <!-- run -->
+          <div>
+            <div style="font-family: var(--mono); font-size: 0.72rem; color: var(--accent); margin-bottom: 10px; letter-spacing: 0.1em;">COMMAND: omnicc run</div>
+            <div class="terminal">
+              <div class="terminal-bar"><span></span><span></span><span></span><span style="margin-left: auto; font-size: 0.7rem; opacity:0.4;">hello.ok</span></div>
+              <div class="terminal-body">
+                <div class="t-dim"># hello.ok</div>
+                <div class="t-blue">set name = "Akik"</div>
+                <div class="t-blue">print("Hello, " + name)</div>
+                <br/>
+                <div><span class="t-prompt">PS&gt;</span> <span class="t-cmd">omnicc run hello.ok</span></div>
+                <div class="t-dim">  [omnicc] parsed 2 statement(s) from 'hello.ok'</div>
+                <div class="t-dim">  [omnicc] running 384 bytes of machine code...</div>
+                <div class="t-ok">  Hello, Akik</div>
+                <div class="t-dim">  [omnicc] run complete, exit_code=0</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- functions and recursion -->
+          <div>
+            <div style="font-family: var(--mono); font-size: 0.72rem; color: var(--accent-2); margin-bottom: 10px; letter-spacing: 0.1em;">FEATURE: Functions &amp; Recursion</div>
+            <div class="terminal">
+              <div class="terminal-bar"><span></span><span></span><span></span><span style="margin-left: auto; font-size: 0.7rem; opacity:0.4;">fib.ok</span></div>
+              <div class="terminal-body">
+                <div class="t-dim"># fib.ok — recursive fibonacci</div>
+                <div class="t-blue">fn fib(n):</div>
+                <div class="t-blue">    if n &lt;= 1:</div>
+                <div class="t-blue">        return n</div>
+                <div class="t-blue">    return fib(n - 1) + fib(n - 2)</div>
+                <br/>
+                <div class="t-blue">set result = fib(35)</div>
+                <div class="t-blue">print(result)</div>
+                <br/>
+                <div><span class="t-prompt">PS&gt;</span> <span class="t-cmd">omnicc run fib.ok</span></div>
+                <div class="t-ok">  9227465</div>
+                <div class="t-dim">  [omnicc] run complete, exit_code=0</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- loops + break/continue -->
+          <div>
+            <div style="font-family: var(--mono); font-size: 0.72rem; color: var(--accent-4); margin-bottom: 10px; letter-spacing: 0.1em;">FEATURE: Loops, break, continue</div>
+            <div class="terminal">
+              <div class="terminal-bar"><span></span><span></span><span></span><span style="margin-left: auto; font-size: 0.7rem; opacity:0.4;">primes.ok</span></div>
+              <div class="terminal-body">
+                <div class="t-dim"># primes.ok — prime sieve via trial division</div>
+                <div class="t-blue">fn is_prime(n):</div>
+                <div class="t-blue">    if n &lt; 2:</div>
+                <div class="t-blue">        return 0</div>
+                <div class="t-blue">    set d = 2</div>
+                <div class="t-blue">    while d * d &lt;= n:</div>
+                <div class="t-blue">        if n % d == 0:</div>
+                <div class="t-blue">            return 0</div>
+                <div class="t-blue">        set d = d + 1</div>
+                <div class="t-blue">    return 1</div>
+                <br/>
+                <div class="t-blue">set count = 0</div>
+                <div class="t-blue">set n = 2</div>
+                <div class="t-blue">while n &lt;= 100000:</div>
+                <div class="t-blue">    if is_prime(n):</div>
+                <div class="t-blue">        set count = count + 1</div>
+                <div class="t-blue">    set n = n + 1</div>
+                <div class="t-blue">print(count)</div>
+                <br/>
+                <div><span class="t-prompt">PS&gt;</span> <span class="t-cmd">omnicc run primes.ok</span></div>
+                <div class="t-ok">  9592</div>
+                <div class="t-dim">  [omnicc] run complete, exit_code=0</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- match/case -->
+          <div>
+            <div style="font-family: var(--mono); font-size: 0.72rem; color: var(--accent-3); margin-bottom: 10px; letter-spacing: 0.1em;">FEATURE: match / case</div>
+            <div class="terminal">
+              <div class="terminal-bar"><span></span><span></span><span></span><span style="margin-left: auto; font-size: 0.7rem; opacity:0.4;">match.ok</span></div>
+              <div class="terminal-body">
+                <div class="t-dim"># match.ok — structural pattern matching</div>
+                <div class="t-blue">fn grade(score):</div>
+                <div class="t-blue">    match score:</div>
+                <div class="t-blue">        case 100:</div>
+                <div class="t-blue">            return "perfect"</div>
+                <div class="t-blue">        case 90:</div>
+                <div class="t-blue">            return "excellent"</div>
+                <div class="t-blue">        case _:</div>
+                <div class="t-blue">            return "keep going"</div>
+                <br/>
+                <div class="t-blue">print(grade(100))</div>
+                <div class="t-blue">print(grade(90))</div>
+                <div class="t-blue">print(grade(42))</div>
+                <br/>
+                <div><span class="t-prompt">PS&gt;</span> <span class="t-cmd">omnicc run match.ok</span></div>
+                <div class="t-ok">  perfect</div>
+                <div class="t-ok">  excellent</div>
+                <div class="t-ok">  keep going</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- compile to exe -->
+          <div>
+            <div style="font-family: var(--mono); font-size: 0.72rem; color: var(--fg-dim); margin-bottom: 10px; letter-spacing: 0.1em;">COMMAND: omnicc build — compile to standalone .exe</div>
+            <div class="terminal">
+              <div class="terminal-bar"><span></span><span></span><span></span><span style="margin-left: auto; font-size: 0.7rem; opacity:0.4;">compile to binary</span></div>
+              <div class="terminal-body">
+                <div><span class="t-prompt">PS&gt;</span> <span class="t-cmd">omnicc build fib.ok -o fib.exe</span></div>
+                <div class="t-dim">  [omnicc] parsed 6 statement(s) from 'fib.ok'</div>
+                <div class="t-dim">  [omnicc] emitting PE binary...</div>
+                <div class="t-ok">  [omnicc] written 3680 bytes to fib.exe</div>
+                <br/>
+                <div><span class="t-prompt">PS&gt;</span> <span class="t-cmd">.\fib.exe</span></div>
+                <div class="t-ok">  9227465</div>
+                <div class="t-dim">  # standalone binary — no runtime, no VM, no interpreter</div>
+                <div class="t-dim">  # links only kernel32.dll, runs on any Windows x64 machine</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section class="section" style="background: rgba(255,255,255,0.01);">
+      <div class="container">
+        <div class="section-label reveal">Build Phases</div>
+        <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom: 40px;">Omnikarai development roadmap</h2>
+        <div class="progress-tracker reveal reveal-delay-2">
+          <div class="progress-step done">
+            <div class="step-dot"></div>
+            <div class="step-content">
+              <strong>Phase 1 — Core Language</strong>
+              <p>Variables, arithmetic, comparisons, logical operators, if/elif/else with nesting and blank lines between blocks. Full INDENT/DEDENT lexer and Pratt parser.</p>
+            </div>
+          </div>
+          <div class="progress-step done">
+            <div class="step-dot"></div>
+            <div class="step-content">
+              <strong>Phase 2 — Control Flow</strong>
+              <p>while loops, break, continue, for i in range(n). All emit correct conditional jump sequences with backpatching in the codegen layer.</p>
+            </div>
+          </div>
+          <div class="progress-step done">
+            <div class="step-dot"></div>
+            <div class="step-content">
+              <strong>Phase 3 — Functions &amp; match/case</strong>
+              <p>User-defined functions with arguments, return, recursion, and nested calls. match/case pattern matching with wildcard support. Standard library builtins: print, str, int, len, input.</p>
+            </div>
+          </div>
+          <div class="progress-step active">
+            <div class="step-dot"></div>
+            <div class="step-content">
+              <strong>Phase 4 — Runtime Type System <span class="badge badge-warn" style="font-size:0.72rem; padding: 2px 8px; vertical-align: middle;">Next</span></strong>
+              <p>List literals [a,b,c], dict literals {"k":v}, index access obj[i], append(), string concatenation, and float arithmetic codegen. Introduces a tagged value representation.</p>
+            </div>
+          </div>
+          <div class="progress-step">
+            <div class="step-dot"></div>
+            <div class="step-content">
+              <strong>Phase 5 — Register Allocator</strong>
+              <p>Move loop induction variables and hot scalars from rbp-offset stack slots into CPU registers. Expected to close the remaining performance gap vs GCC -O2 on non-recursive workloads.</p>
+            </div>
+          </div>
+          <div class="progress-step">
+            <div class="step-dot"></div>
+            <div class="step-content">
+              <strong>Phase 6 — First-Class Functions &amp; Closures</strong>
+              <p>Functions as values, closures over enclosing scope, and higher-order functions. Enables functional programming patterns natively.</p>
+            </div>
+          </div>
+          <div class="progress-step">
+            <div class="step-dot"></div>
+            <div class="step-content">
+              <strong>Phase 7 — Modules &amp; Standard Library</strong>
+              <p>Multi-file compilation, import system, and an expanded standard library covering file I/O, string operations, and basic collections.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTEXT -->
+    <section class="section">
+      <div class="container">
+        <div class="section-label reveal">Context</div>
+        <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom: 16px;">Why build a compiler?</h2>
+        <div class="grid-2 reveal reveal-delay-2" style="gap: 40px; align-items: start;">
+          <div class="card" style="padding: 28px; border-color: rgba(77,240,200,0.15);">
+            <p style="color: var(--fg-muted); font-size: 0.95rem; line-height: 1.85; margin: 0 0 18px;">
+              Omnikarai started as a question: what does it actually take to turn text into a running program? Not "what does LLVM do under the hood" but "what are the exact bytes emitted, and why?"
+            </p>
+            <p style="color: var(--fg-muted); font-size: 0.95rem; line-height: 1.85; margin: 0 0 18px;">
+              It sits alongside XORZEN and AXONIX-ZERO as a demonstration that Akik's engineering instinct operates at every level of the stack — from designing sparse attention mechanisms, to writing autonomous agent loops, to encoding x86-64 instruction bytes by hand.
+            </p>
+            <p style="color: var(--fg-muted); font-size: 0.95rem; line-height: 1.85; margin: 0;">
+              The v6.0 benchmark suite — 20/20 tests passing — shows Fib(40) at 3.72× and Primes at 3.15× of GCC -O3. The larger gaps on Matmul and loop-heavy workloads are the direct target of Phase 5's register allocator, which will eliminate the rbp-offset memory round-trips currently limiting throughput.
+            </p>
+          </div>
+          <div style="display: grid; gap: 16px;">
+            <div class="card card-feature" style="border-color: rgba(124,92,252,0.2);">
+              <div style="font-weight: 700; font-size: 0.9rem; margin-bottom: 8px;">Built in</div>
+              <div style="font-family: var(--mono); font-size: 0.85rem; color: var(--accent-light);">C (GCC / MinGW)</div>
+            </div>
+            <div class="card card-feature" style="border-color: rgba(124,92,252,0.2);">
+              <div style="font-weight: 700; font-size: 0.9rem; margin-bottom: 8px;">Target platform</div>
+              <div style="font-family: var(--mono); font-size: 0.85rem; color: var(--accent-light);">Windows x64 — PE/COFF binary</div>
+            </div>
+            <div class="card card-feature" style="border-color: rgba(124,92,252,0.2);">
+              <div style="font-weight: 700; font-size: 0.9rem; margin-bottom: 8px;">Version</div>
+              <div style="font-family: var(--mono); font-size: 0.85rem; color: var(--accent-light);">v6.0 — 20/20 benchmark tests passing</div>
+            </div>
+            <div class="card card-feature" style="border-color: rgba(124,92,252,0.2);">
+              <div style="font-weight: 700; font-size: 0.9rem; margin-bottom: 8px;">Benchmark result</div>
+              <div style="font-family: var(--mono); font-size: 0.85rem; color: var(--accent);">Fib(40) 3.72× · Primes 3.15× of GCC -O3</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+      <div class="container" style="text-align: center; max-width: 600px; margin: 0 auto;">
+        <div class="badge badge-cyan badge-dot reveal" style="margin-bottom: 20px;">Open development</div>
+        <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom: 16px;">Interested in Omnikarai?</h2>
+        <p class="reveal reveal-delay-2" style="color: var(--fg-muted); margin-bottom: 32px;">
+          Follow the build on GitHub or reach out to Akik directly for technical discussions about compiler design, language architecture, or native code generation.
+        </p>
+        <div class="btn-row reveal reveal-delay-3" style="justify-content: center;">
+          <a class="btn btn-primary" href="https://github.com/Akik-Forazi" target="_blank" rel="noopener">GitHub &rarr;</a>
+          <a class="btn btn-ghost" href="contact.html">Contact Akik</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container"><div class="footer-grid">
+    <div class="footer-brand"><div class="logo" style="margin-bottom:14px;"><span class="logo-icon"></span>FRAZIYM TECH &amp; AI</div><p>Local-first autonomous AI engineering. Built from scratch in Dhaka, Bangladesh by a 19-year-old who decided the transformer math needed fixing.</p><div class="footer-status"><span class="status-dot"></span>All systems operational</div></div>
+    <div class="footer-col"><h4>Product</h4><a href="xorzen.html">XORZEN Framework</a><a href="product.html">AXONIX-ZERO</a><a href="omnikarai.html">Omnikarai</a><a href="product.html#backends">Backends</a><a href="pricing.html">Pricing</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="about.html">About</a><a href="founder.html">Akik — Founder &amp; CTO</a><a href="sakibul.html">Sakibul — CEO</a><a href="yasir.html">Yasir — CCO</a><a href="team.html">Team</a><a href="stage.html">Stage</a><a href="projects.html">Projects</a></div>
+    <div class="footer-col"><h4>Connect</h4><a href="fundraiser.html" style="color:var(--accent-4);">&#11088; Support XORZEN</a><a href="contact.html#demo">Request demo</a><a href="mailto:akikfaraji@gmail.com">akikfaraji@gmail.com</a><a href="https://github.com/Akik-Forazi" target="_blank" rel="noopener">GitHub</a><a href="team.html#join">Join the team</a></div>
+  </div><div class="footer-bottom"><span>&#169; 2026 FRAZIYM TECH &amp; AI &middot; All rights reserved &middot; Akik Faraji &middot; Dhaka, Bangladesh</span><span class="mono" style="font-size:0.74rem;">v3.0.0-beta &middot; XORZEN v0.2.4 &middot; Omnikarai v6.0</span></div></div></footer>
+  <script src="script.js"></script>
+</body>
+</html>

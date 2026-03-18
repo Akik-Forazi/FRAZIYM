@@ -41,6 +41,7 @@
           <a href="#axonix"><span class="dot"></span>AXONIX-ZERO</a>
           <a href="#models"><span class="dot"></span>Models</a>
           <a href="#agentic"><span class="dot"></span>Agentic Services</a>
+          <a href="omnikarai.html"><span class="dot dot-cyan"></span>Omnikarai Compiler</a>
         </div>
       </div>
       <div class="dropdown">
@@ -63,7 +64,7 @@
     <section class="page-hero">
       <div class="container">
         <div class="badge badge-accent badge-dot reveal" style="margin-bottom: 24px;">Portfolio · 2026</div>
-        <h1 class="reveal reveal-delay-1" style="margin-bottom: 20px;">Projects &amp; <span class="display">Portfolio</span></h1>
+        <h1 class="reveal reveal-delay-1" data-type-header style="margin-bottom: 20px;">Projects &amp; <span class="display">Portfolio</span></h1>
         <p class="reveal reveal-delay-2" style="color: var(--fg-muted); font-size: 1.05rem; max-width: 560px; margin: 0;">
           A growing ecosystem of autonomous agents, specialized models, and enterprise-grade applications — all built local-first with no compromise on transparency.
         </p>
@@ -74,7 +75,7 @@
     <section id="axonix" class="section">
       <div class="container">
         <div class="section-label reveal">Flagship · Active</div>
-        <h2 class="reveal reveal-delay-1" style="margin-bottom: 16px;">AXONIX-ZERO</h2>
+        <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom: 16px;">AXONIX-ZERO</h2>
         <p class="reveal reveal-delay-2" style="color: var(--fg-muted); max-width: 560px; margin-bottom: 40px;">The autonomous engineering agent. Runs entirely on Windows using your own LLMs. Ships as a standalone <code style="font-family:var(--mono);font-size:0.85em;background:rgba(255,255,255,0.06);padding:1px 6px;border-radius:4px;">axonix.exe</code>.</p>
 
         <div class="card reveal" style="margin-bottom: 24px; border-color: rgba(77,240,200,0.2);">
@@ -123,7 +124,7 @@
     <section id="xorzen" class="section">
       <div class="container">
         <div class="section-label reveal">Research Framework · Active</div>
-        <h2 class="reveal reveal-delay-1" style="margin-bottom: 16px;">XORZEN Framework</h2>
+        <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom: 16px;">XORZEN Framework</h2>
         <p class="reveal reveal-delay-2" style="color: var(--fg-muted); max-width: 560px; margin-bottom: 40px;">Sparse Adaptive Intelligence. Developed by FRAZIYM AI — a paradigm shift in LLM architecture achieving state-of-the-art performance at a fraction of traditional costs.</p>
         <div class="grid-3">
           <div class="card reveal" style="border-color: rgba(107,123,255,0.2);">
@@ -152,7 +153,7 @@
     <section id="models" class="section">
       <div class="container">
         <div class="section-label reveal">Models · Curated Registry</div>
-        <h2 class="reveal reveal-delay-1" style="margin-bottom: 16px;">Supported Local Models</h2>
+        <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom: 16px;">Supported Local Models</h2>
         <p class="reveal reveal-delay-2" style="color: var(--fg-muted); max-width: 520px; margin-bottom: 32px;">AXONIX-ZERO ships with a curated model registry. Every model includes hardware requirements and use-case guidance.</p>
 
         <div class="section-label reveal" style="margin-bottom: 12px;">XORZEN Models · From FRAZIYM</div>
@@ -210,11 +211,65 @@
 
     <div class="sep"></div>
 
+    <!-- OMNIKARAI -->
+    <section id="omnikarai" class="section">
+      <div class="container">
+        <div class="section-label reveal">Language &amp; Compiler · Active</div>
+        <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom: 16px;">Omnikarai</h2>
+        <p class="reveal reveal-delay-2" style="color: var(--fg-muted); max-width: 560px; margin-bottom: 40px;">A hand-written programming language with a compiler that emits native Windows x64 machine code directly — no LLVM, no GCC backend. Every instruction in the output binary was authored by the compiler itself. v6.0: 20/20 benchmark tests passing — Fib(40) at 3.72× of GCC&#160;-O3, Primes at 3.15× of GCC&#160;-O3.</p>
+
+        <div class="card reveal" style="margin-bottom: 24px; border-color: rgba(77,240,200,0.18);">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 24px;">
+            <div>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px;">
+                <span class="badge badge-accent">Active · v6.0</span>
+                <span class="badge badge-dim">Windows x64</span>
+                <span class="badge badge-dim">Native x86-64</span>
+                <span class="badge badge-dim">Written in C</span>
+              </div>
+              <p style="color: var(--fg-muted); font-size: 0.9rem; margin: 0; max-width: 520px;">Full Pratt parser, INDENT/DEDENT lexer, and direct x86-64 machine code emission. Supports functions, recursion, while loops, for/range, match/case, break/continue, and a Win32-backed standard library. 20/20 benchmark tests passing. Compiles and runs with a single command.</p>
+            </div>
+            <a class="btn btn-primary" href="omnikarai.html">Full details &#8594;</a>
+          </div>
+          <div class="grid-4">
+            <div style="padding: 14px; background: rgba(77,240,200,0.04); border-radius: 10px; border: 1px solid rgba(77,240,200,0.12); text-align: center;">
+              <div class="mono" style="font-size: 0.72rem; color: var(--accent); margin-bottom: 4px;">FIB(40) ×5</div>
+              <div style="font-size: 1.5rem; font-weight: 700; font-family: var(--mono);">3.72×</div>
+              <div style="font-size: 0.72rem; color: var(--fg-dim); margin-top: 4px;">vs GCC -O3</div>
+            </div>
+            <div style="padding: 14px; background: rgba(107,123,255,0.04); border-radius: 10px; border: 1px solid rgba(107,123,255,0.12); text-align: center;">
+              <div class="mono" style="font-size: 0.72rem; color: var(--accent-2); margin-bottom: 4px;">PRIMES ×30</div>
+              <div style="font-size: 1.5rem; font-weight: 700; font-family: var(--mono);">3.15×</div>
+              <div style="font-size: 0.72rem; color: var(--fg-dim); margin-top: 4px;">vs GCC -O3</div>
+            </div>
+            <div style="padding: 14px; background: rgba(255,209,102,0.04); border-radius: 10px; border: 1px solid rgba(255,209,102,0.12); text-align: center;">
+              <div class="mono" style="font-size: 0.72rem; color: var(--accent-4); margin-bottom: 4px;">MATMUL ×5K</div>
+              <div style="font-size: 1.5rem; font-weight: 700; font-family: var(--mono);">26.9×</div>
+              <div style="font-size: 0.72rem; color: var(--fg-dim); margin-top: 4px;">reg alloc next</div>
+            </div>
+            <div style="padding: 14px; background: rgba(255,107,107,0.04); border-radius: 10px; border: 1px solid rgba(255,107,107,0.12); text-align: center;">
+              <div class="mono" style="font-size: 0.72rem; color: var(--accent-3); margin-bottom: 4px;">TEST SUITE</div>
+              <div style="font-size: 1.1rem; font-weight: 700; font-family: var(--mono);">20/20</div>
+              <div style="font-size: 0.72rem; color: var(--fg-dim); margin-top: 4px;">all tests pass</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <div class="card-feature reveal"><div class="icon">&#128296;</div><h3>Pratt Parser</h3><p>Full recursive-descent Pratt parser. Handles operator precedence, nested expressions, logical operators, and the complete grammar — including INDENT/DEDENT block structure without braces.</p></div>
+          <div class="card-feature reveal reveal-delay-1"><div class="icon">&#9881;</div><h3>Native x86-64 Codegen</h3><p>The compiler walks the AST and writes raw instruction bytes directly. Stack frames, variable addressing, conditional jumps with backpatching, and Win32 function calls — all by hand.</p></div>
+          <div class="card-feature reveal reveal-delay-2"><div class="icon">&#128200;</div><h3>v6.0 Benchmarks</h3><p>20/20 tests passing. Fib(40)×5 at 3.72× of GCC -O3. Primes×30 at 3.15× of GCC -O3. Matmul gap targeted by Phase 5 register allocator. Correct output verified on every run.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="sep"></div>
+
     <!-- AGENTIC SERVICES -->
     <section id="agentic" class="section">
       <div class="container">
         <div class="section-label reveal">Agentic Services · Roadmap</div>
-        <h2 class="reveal reveal-delay-1" style="margin-bottom: 40px;">Custom autonomous systems</h2>
+        <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom: 40px;">Custom autonomous systems</h2>
         <div class="grid-3">
           <div class="card-feature reveal"><div class="icon">🔬</div><h3>Autonomous QA</h3><p>Continuous regression finding, proactive test creation, and coverage reporting — triggered on every commit without human review.</p></div>
           <div class="card-feature reveal reveal-delay-1"><div class="icon">🗼</div><h3>Infra Watchtower</h3><p>Continuous monitoring agent with automated recovery playbooks. Detects anomalies, drafts incident reports, and executes pre-approved remediation steps.</p></div>
@@ -229,7 +284,7 @@
     <section id="apps" class="section">
       <div class="container">
         <div class="section-label reveal">Apps · Roadmap</div>
-        <h2 class="reveal reveal-delay-1" style="margin-bottom: 40px;">Coming to the platform</h2>
+        <h2 class="reveal reveal-delay-1" data-type-header style="margin-bottom: 40px;">Coming to the platform</h2>
         <div class="grid-3">
           <div class="card reveal"><div class="badge badge-dim" style="margin-bottom: 16px;">Roadmap</div><h3 style="margin-bottom: 8px;">FRAZIYM Studio</h3><p style="color: var(--fg-muted); font-size: 0.88rem; margin: 0;">Private AI workspace for teams. Shared memory, multi-agent workflows, project-level context, and role-based tool access.</p></div>
           <div class="card reveal reveal-delay-1"><div class="badge badge-dim" style="margin-bottom: 16px;">Roadmap</div><h3 style="margin-bottom: 8px;">FRAZIYM Foundry</h3><p style="color: var(--fg-muted); font-size: 0.88rem; margin: 0;">Model fine-tuning pipelines, GGUF quantization tooling, release safety gates, and a private model registry.</p></div>
@@ -246,10 +301,10 @@
 
   <footer class="footer"><div class="container"><div class="footer-grid">
     <div class="footer-brand"><div class="logo" style="margin-bottom:14px;"><span class="logo-icon"></span>FRAZIYM TECH &amp; AI</div><p>Local-first autonomous AI engineering. Built from scratch in Dhaka, Bangladesh by a 19-year-old who decided the transformer math needed fixing.</p><div class="footer-status"><span class="status-dot"></span>All systems operational</div></div>
-    <div class="footer-col"><h4>Product</h4><a href="xorzen.html">XORZEN Framework</a><a href="product.html">AXONIX-ZERO</a><a href="product.html#backends">Backends</a><a href="product.html#tools">Tool Layer</a><a href="pricing.html">Pricing</a></div>
+    <div class="footer-col"><h4>Product</h4><a href="xorzen.html">XORZEN Framework</a><a href="product.html">AXONIX-ZERO</a><a href="omnikarai.html">Omnikarai v6.0</a><a href="product.html#backends">Backends</a><a href="product.html#tools">Tool Layer</a><a href="pricing.html">Pricing</a></div>
     <div class="footer-col"><h4>Company</h4><a href="about.html">About</a><a href="founder.html">Akik — Founder &amp; CTO</a><a href="sakibul.html">Sakibul — CEO</a><a href="yasir.html">Yasir — CCO</a><a href="team.html">Team</a><a href="stage.html">Stage</a><a href="projects.html">Projects</a></div>
     <div class="footer-col"><h4>Connect</h4><a href="fundraiser.html" style="color:var(--accent-4);">⭐ Support XORZEN</a><a href="contact.html#demo">Request demo</a><a href="mailto:akikfaraji@gmail.com">akikfaraji@gmail.com</a><a href="https://github.com/Akik-Forazi" target="_blank" rel="noopener">GitHub</a><a href="team.html#join">Join the team</a></div>
-  </div><div class="footer-bottom"><span>© 2026 FRAZIYM TECH &amp; AI · All rights reserved · Akik Faraji · Dhaka, Bangladesh</span><span class="mono" style="font-size:0.74rem;">v3.0.0-beta · XORZEN v0.2.4 · AXONIX v1.0-beta-A2</span></div></div></footer>
+  </div><div class="footer-bottom"><span>© 2026 FRAZIYM TECH &amp; AI · All rights reserved · Akik Faraji · Dhaka, Bangladesh</span><span class="mono" style="font-size:0.74rem;">v3.0.0-beta · XORZEN v0.2.4 · Omnikarai v6.0</span></div></div></footer>
   <script src="script.js"></script>
 </body>
 </html>
